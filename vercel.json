@@ -2,8 +2,8 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "framework": "nextjs",
-  "installCommand": "npm install",
-  "buildCommand": "npm run deploy:check-env && npm run build",
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm run deploy:check-env && pnpm run build",
   "functions": {
     "app/api/**/route.ts": {
       "runtime": "nodejs20.x",
