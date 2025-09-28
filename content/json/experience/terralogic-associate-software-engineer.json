@@ -1,0 +1,14 @@
+{
+  "id": "terralogic-associate-software-engineer",
+  "company": "Terralogic",
+  "role": "Associate Software Engineer",
+  "location": "HCM, Viet Nam · Full-time",
+  "startDate": "2024-03-01",
+  "endDate": "2025-05-01",
+  "summary": "Contributed to the digital operations suite for Terralogic clients, translating product specs into resilient services and UI workflows.",
+  "highlights": [
+    "Implemented TypeScript APIs on Node.js and PostgreSQL that reduced order-processing latency by 28%.",
+    "Collaborated with the design org to create an accessible component library, enabling faster feature prototyping.",
+    "Stood up Grafana dashboards and on-call playbooks that cut incident triage time from hours to minutes."
+  ]
+}

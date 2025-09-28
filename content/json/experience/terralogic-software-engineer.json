@@ -1,0 +1,14 @@
+{
+  "id": "terralogic-software-engineer",
+  "company": "Terralogic",
+  "role": "Software Engineer",
+  "location": "HCM, Viet Nam · Full-time",
+  "startDate": "2025-05-01",
+  "endDate": "Present",
+  "summary": "Delivering full-stack features for enterprise platforms while shaping engineering standards across the Terralogic product guild.",
+  "highlights": [
+    "Designed and shipped modular Next.js experiences backed by a GraphQL gateway, improving page responsiveness by 35%.",
+    "Rolled out contract testing and Playwright suites in CI, cutting production regressions to near-zero.",
+    "Led a weekly engineering design review that accelerated feedback loops between product design and delivery squads."
+  ]
+}

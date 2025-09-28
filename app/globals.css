@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 42 58% 97%;
+  --foreground: 26 55% 14%;
+  --muted: 38 50% 90%;
+  --muted-foreground: 24 42% 30%;
+  --accent: 36 92% 84%;
+  --accent-foreground: 24 45% 18%;
+  --card: 0 0% 100%;
+  --card-foreground: 26 55% 14%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 26 55% 14%;
+  --primary: 32 94% 48%;
+  --primary-foreground: 46 100% 97%;
+  --secondary: 27 45% 24%;
+  --secondary-foreground: 43 100% 96%;
+  --destructive: 0 76% 44%;
+  --destructive-foreground: 40 100% 97%;
+  --border: 30 32% 72%;
+  --input: 30 32% 72%;
+  --ring: 32 94% 48%;
+  --shadow-color: 24 32% 38%;
+  --radius-lg: 0.875rem;
+  color-scheme: light;
+}
+
+.dark {
+  --background: 24 52% 9%;
+  --foreground: 36 64% 92%;
+  --muted: 26 40% 16%;
+  --muted-foreground: 36 42% 74%;
+  --accent: 32 50% 20%;
+  --accent-foreground: 38 72% 90%;
+  --card: 28 46% 12%;
+  --card-foreground: 36 64% 92%;
+  --popover: 28 46% 12%;
+  --popover-foreground: 36 64% 92%;
+  --primary: 34 96% 60%;
+  --primary-foreground: 44 100% 97%;
+  --secondary: 30 36% 26%;
+  --secondary-foreground: 38 70% 92%;
+  --destructive: 0 72% 56%;
+  --destructive-foreground: 44 100% 97%;
+  --border: 30 38% 28%;
+  --input: 30 38% 28%;
+  --ring: 34 96% 60%;
+  --shadow-color: 28 24% 18%;
+  color-scheme: dark;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  min-height: 100vh;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-feature-settings:
+    "rlig" 1,
+    "calt" 1;
+  text-rendering: optimizeLegibility;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}

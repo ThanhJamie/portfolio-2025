@@ -1,0 +1,81 @@
+[
+  {
+    "title": "Python for Everybody",
+    "time": "May 3, 2021",
+    "link": "https://coursera.org/share/293b4cb65a1e9e3a37dfe9d67967ddf2",
+    "tech": ["Retrieving", "Processing", "Visualizing Data", "Python"]
+  },
+  {
+    "title": "Google Project Management",
+    "time": "May 29, 2023",
+    "link": "https://coursera.org/share/95ee6719544b064e28003ceb1ba135f4",
+    "tech": ["Agile Project Management", "Project Management"]
+  },
+  {
+    "title": "AI Foundations for Everyone",
+    "time": "January 22, 2022",
+    "link": "https://coursera.org/share/5a44c0d561c4e84d0e5b693814e74ad5",
+    "tech": [
+      "Prompt Engineering",
+      "Prompt Patterns",
+      "Natural Language Processing",
+      "Generative AI",
+      "IBM Cloud",
+      "..."
+    ]
+  },
+  {
+    "title": "CertNexus Certified Ethical Emerging Technologist",
+    "time": "May 30, 2022",
+    "link": "https://coursera.org/share/4ed71a96e937de6761651f8bb5ba0b8c",
+    "tech": [
+      "Risk Management",
+      "Data Ethics",
+      "Business Ethics",
+      "Communication Strategies",
+      "Law, Regulation, and Compliance",
+      "..."
+    ]
+  },
+  {
+    "title": "Big Data",
+    "time": "January 12, 2023",
+    "link": "https://coursera.org/share/e30e3ec9e53ebe32f742bc826db6ae43",
+    "tech": [
+      "Apache Hadoop",
+      "Prompt Patterns",
+      "Data Pipelines",
+      "Data Mining",
+      "Data Management",
+      "..."
+    ]
+  },
+  {
+    "title": "Natural Language Processing",
+    "time": "May 31, 2023",
+    "link": "https://coursera.org/share/281cbd577d90396419b824d53583be8c",
+    "tech": [
+      "PyTorch (Machine Learning Library)",
+      "Keras (Neural Network Library)",
+      "Artificial Neural Networks",
+      "Natural Language Processing",
+      "Deep Learning",
+      "Sequence Models",
+      "..."
+    ]
+  },
+  {
+    "title": "Computer Communications",
+    "time": "May 15, 2021",
+    "link": "https://coursera.org/share/e7b795de329fed08986bd7e06417f569",
+    "tech": [
+      "Software-Defined Networking",
+      "Network Security",
+      "Network Routing",
+      "Network Performance Management",
+      "General Networking",
+      "Wireless Networks",
+      "..."
+    ]
+  }
+]

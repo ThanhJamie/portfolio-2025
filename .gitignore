@@ -1,0 +1,31 @@
+# Dependencies and caches
+node_modules/
+.pnpm-store/
+.turbo/
+.cache/
+
+# Next.js build output
+.next/
+out/
+dist/
+.contentlayer/
+
+# Environment
+.env*
+
+# Logs and coverage
+*.log
+*.log*
+coverage/
+
+# Editor configs
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Build artifacts
+tsconfig.tsbuildinfo
+
+# npm lockfile (pnpm used instead)
+package-lock.json

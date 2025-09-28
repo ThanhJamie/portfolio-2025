@@ -1,0 +1,54 @@
+{
+  "name": "Thanh Dang",
+  "headline": "Product Designer & Frontend Engineer",
+  "tagline": "Designing inclusive digital experiences that accelerate growth",
+  "location": "Melbourne, Australia · Remote friendly",
+  "primaryEmail": "hello@thanhdang.design",
+  "availability": "Open for fractional product leadership engagements",
+  "heroImage": {
+    "src": "/images/7aef058d-55bf-4dcc-81c4-0f6e423348fa.jpg",
+    "alt": "Portrait of Thanh Dang"
+  },
+  "heroStats": [
+    {
+      "label": "Years of experience",
+      "value": "8+",
+      "description": "Leading product design & engineering teams"
+    },
+    {
+      "label": "Shipped launches",
+      "value": "35+",
+      "description": "Scaled SaaS, fintech, and growth experiments"
+    }
+  ],
+  "callToAction": {
+    "label": "Request intro",
+    "href": "mailto:thanhjamieai@gmail.com"
+  },
+  "story": [
+    "I help founders and product teams translate ambitious ideas into inclusive, measurable experiences without losing momentum.",
+    "My practice blends product strategy, design systems, and frontend execution so teams can experiment quickly with confidence."
+  ],
+  "focusAreas": [
+    "Product discovery, systems design, experimentation operations",
+    "Design-to-code collaboration and accessible frontend delivery"
+  ],
+  "recentWins": [
+    "Lifted activation by 28% for Aurora Labs' growth suite",
+    "Resolved 180+ accessibility issues ahead of a multi-brand retail launch"
+  ],
+  "socialLinks": [
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/thanhlovesfigma"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/ThanhJamie"
+    },
+    {
+      "label": "Dribbble",
+      "href": "https://dribbble.com/ThanhJamie"
+    }
+  ]
+}

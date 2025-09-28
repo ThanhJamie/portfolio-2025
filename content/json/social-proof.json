@@ -1,0 +1,56 @@
+{
+  "testimonials": [
+    {
+      "quote": "Thanh translates ambiguous growth bets into confident roadmaps without leaving teams behind.",
+      "person": {
+        "name": "Alex Rivera",
+        "title": "VP Product",
+        "company": "Aurora Labs",
+        "avatar": "/images/social-proof/alex-rivera.jpg"
+      }
+    },
+    {
+      "quote": "Her systems thinking leveled up our design operations while keeping accessibility non-negotiable.",
+      "person": {
+        "name": "Priya Shah",
+        "title": "Head of Design",
+        "company": "Vertex Commerce",
+        "avatar": "/images/social-proof/priya-shah.jpg"
+      }
+    }
+  ],
+  "logos": [
+    {
+      "name": "Aurora Labs",
+      "src": "/images/logos/aurora-labs.svg",
+      "alt": "Aurora Labs logo"
+    },
+    {
+      "name": "Nexa Growth",
+      "src": "/images/logos/nexa-growth.svg",
+      "alt": "Nexa Growth logo"
+    },
+    {
+      "name": "Vertex Commerce",
+      "src": "/images/logos/vertex-commerce.svg",
+      "alt": "Vertex Commerce logo"
+    }
+  ],
+  "metrics": [
+    {
+      "label": "Activation lift",
+      "value": "+28%",
+      "description": "Trial-to-paid conversion after growth suite redesign"
+    },
+    {
+      "label": "Accessibility debt cleared",
+      "value": "180+",
+      "description": "WCAG issues resolved ahead of holiday campaign"
+    },
+    {
+      "label": "Experiment cadence",
+      "value": "3x",
+      "description": "Increase in validated tests per quarter"
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "frontend": [
+    {
+      "name": "JavaScript (ESNext)",
+      "summary": "Core language of the web, utilizing the latest ECMAScript features."
+    },
+    {
+      "name": "TypeScript",
+      "summary": "Superset of JavaScript for building safe, maintainable, and scalable applications."
+    },
+    {
+      "name": "React",
+      "summary": "A declarative library for building user interfaces with a component-based architecture."
+    },
+    {
+      "name": "Next.js",
+      "summary": "A full-stack React framework for production, supporting hybrid rendering and serverless functions."
+    },
+    {
+      "name": "Vue.js",
+      "summary": "An approachable and progressive framework for building modern user interfaces."
+    },
+    {
+      "name": "Angular",
+      "summary": "A comprehensive platform and framework for building single-page client applications."
+    },
+    {
+      "name": "Svelte",
+      "summary": "A radical new approach to building UIs by compiling components to efficient imperative code."
+    },
+    {
+      "name": "HTML5 & CSS3",
+      "summary": "Fundamental building blocks for structuring and styling web content."
+    },
+    {
+      "name": "Tailwind CSS",
+      "summary": "A utility-first CSS framework for rapidly building custom user interfaces."
+    },
+    {
+      "name": "Sass/SCSS",
+      "summary": "A mature CSS preprocessor that adds features like variables, nesting, and mixins."
+    },
+    {
+      "name": "CSS-in-JS",
+      "summary": "Styling components using JavaScript with libraries like Styled Components or Emotion."
+    },
+    {
+      "name": "State Management",
+      "summary": "Managing complex application state with Redux, Zustand, Pinia, or RxJS."
+    },
+    {
+      "name": "Frontend Testing",
+      "summary": "Ensuring code quality with Jest, Vitest, React Testing Library, and Cypress for E2E testing."
+    },
+    {
+      "name": "Build Tools",
+      "summary": "Bundling and optimizing assets with modern tools like Vite and Webpack."
+    }
+  ],
+  "backend": [
+    {
+      "name": "Node.js",
+      "summary": "A JavaScript runtime for building scalable and high-performance server-side applications."
+    },
+    {
+      "name": "Python",
+      "summary": "A versatile language for web backends, data science, and scripting with frameworks like Django & FastAPI."
+    },
+    {
+      "name": "Go (Golang)",
+      "summary": "A statically typed, compiled language known for its simplicity and high performance in concurrent systems."
+    },
+    {
+      "name": "Rust",
+      "summary": "A language focused on performance, reliability, and memory safety for systems programming."
+    },
+    {
+      "name": "Java",
+      "summary": "A robust, object-oriented language widely used in enterprise-level applications with Spring Boot."
+    },
+    {
+      "name": "PostgreSQL",
+      "summary": "A powerful, open-source object-relational database system with a strong reputation for reliability."
+    },
+    {
+      "name": "MongoDB",
+      "summary": "A leading NoSQL database, offering flexibility and scalability for unstructured data."
+    },
+    {
+      "name": "Redis",
+      "summary": "An in-memory data structure store, used as a database, cache, and message broker."
+    },
+    {
+      "name": "REST APIs",
+      "summary": "Designing and building web services following the Representational State Transfer architectural style."
+    },
+    {
+      "name": "GraphQL",
+      "summary": "A query language for APIs that provides a more efficient and flexible alternative to REST."
+    },
+    {
+      "name": "gRPC",
+      "summary": "A high-performance, open-source universal RPC framework, ideal for microservices."
+    },
+    {
+      "name": "Authentication & Authorization",
+      "summary": "Implementing secure user access control with JWT, OAuth 2.0, and session management."
+    },
+    {
+      "name": "Message Brokers",
+      "summary": "Using systems like RabbitMQ or Apache Kafka for asynchronous communication between services."
+    }
+  ],
+  "ai_and_ml": [
+    {
+      "name": "Prompt Engineering",
+      "summary": "Designing precise prompts so language models return consistent, high-quality results."
+    },
+    {
+      "name": "Chains and Agents",
+      "summary": "Orchestrating multi-step AI workflows with agent-based frameworks like LangChain."
+    },
+    {
+      "name": "Retrieval-Augmented Generation (RAG)",
+      "summary": "Grounding model responses with curated knowledge bases via vector search and embeddings."
+    },
+    {
+      "name": "Computer Vision",
+      "summary": "Building image understanding pipelines using OpenCV, cloud APIs, and neural networks."
+    },
+    {
+      "name": "Fine-tuning",
+      "summary": "Adapting foundation models to domain-specific tasks through supervised updates."
+    },
+    {
+      "name": "Data Preprocessing",
+      "summary": "Cleaning, normalizing, and augmenting raw datasets to improve model performance."
+    },
+    {
+      "name": "Training & Evaluation",
+      "summary": "Experimenting with hyperparameters, tracking metrics, and validating models before release."
+    },
+    {
+      "name": "Tensors & Computational Graphs",
+      "summary": "Understanding the math abstractions powering PyTorch, TensorFlow, and differentiable programming."
+    },
+    {
+      "name": "Unsupervised Learning",
+      "summary": "Discovering structure in unlabeled data with clustering, topic modeling, and embeddings."
+    },
+    {
+      "name": "Supervised Learning",
+      "summary": "Training predictive models on labeled datasets using algorithms from regression to gradient boosting."
+    }
+  ],
+  "tools_and_devops": [
+    {
+      "name": "Git & GitHub",
+      "summary": "Essential distributed version control system and collaboration platform for code management."
+    },
+    {
+      "name": "Docker",
+      "summary": "A platform for developing, shipping, and running applications in isolated containers."
+    },
+    {
+      "name": "Kubernetes (K8s)",
+      "summary": "An open-source system for automating deployment, scaling, and management of containerized applications."
+    },
+    {
+      "name": "CI/CD",
+      "summary": "Automating software delivery pipelines with tools like GitHub Actions, Jenkins, or GitLab CI."
+    },
+    {
+      "name": "AWS",
+      "summary": "Amazon Web Services: Utilizing a wide range of cloud services like EC2, S3, RDS, and Lambda."
+    },
+    {
+      "name": "Google Cloud (GCP)",
+      "summary": "Leveraging Google's cloud infrastructure for services like Compute Engine, Cloud Storage, and Kubernetes Engine."
+    },
+    {
+      "name": "Microsoft Azure",
+      "summary": "A cloud computing service for building, testing, deploying, and managing applications."
+    },
+    {
+      "name": "Terraform",
+      "summary": "An Infrastructure as Code (IaC) tool for building, changing, and versioning infrastructure safely."
+    },
+    {
+      "name": "Monitoring",
+      "summary": "Observing system health and performance with tools like Prometheus, Grafana, and Datadog."
+    },
+    {
+      "name": "Figma",
+      "summary": "A collaborative interface design tool for creating, testing, and shipping better designs."
+    },
+    {
+      "name": "Storybook",
+      "summary": "A tool for developing and documenting UI components in isolation."
+    },
+    {
+      "name": "Postman / Insomnia",
+      "summary": "API platforms for building, testing, and documenting APIs throughout their lifecycle."
+    }
+  ],
+  "concepts_and_principles": [
+    {
+      "name": "Agile & Scrum",
+      "summary": "Adopting iterative development methodologies for effective project management and teamwork."
+    },
+    {
+      "name": "Data Structures & Algorithms",
+      "summary": "Fundamental computer science knowledge for writing efficient and optimized code."
+    },
+    {
+      "name": "Design Patterns",
+      "summary": "Applying reusable solutions to commonly occurring problems within a given context in software design."
+    },
+    {
+      "name": "SOLID Principles",
+      "summary": "A set of five design principles intended to make software designs more understandable and maintainable."
+    },
+    {
+      "name": "System Design",
+      "summary": "The process of defining the architecture, modules, and data for a system to satisfy specified requirements."
+    },
+    {
+      "name": "Microservices Architecture",
+      "summary": "An architectural style that structures an application as a collection of loosely coupled services."
+    },
+    {
+      "name": "Serverless",
+      "summary": "A cloud-native development model that allows developers to build applications without managing servers."
+    },
+    {
+      "name": "Web Security",
+      "summary": "Understanding and mitigating common vulnerabilities, such as those listed in the OWASP Top 10."
+    },
+    {
+      "name": "Performance Optimization",
+      "summary": "Techniques for improving web application speed, including code splitting, lazy loading, and caching."
+    },
+    {
+      "name": "Accessibility (a11y)",
+      "summary": "The practice of making web products usable by everyone, including people with disabilities."
+    },
+    {
+      "name": "Responsive Design",
+      "summary": "Ensuring applications provide an optimal viewing experience across a wide range of devices."
+    },
+    {
+      "name": "Clean Code",
+      "summary": "Writing code that is readable, understandable, and easy to maintain by other developers."
+    }
+  ]
+}

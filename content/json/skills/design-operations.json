@@ -1,0 +1,10 @@
+{
+  "id": "design-operations",
+  "title": "Design Operations",
+  "summary": "Operational rigor that keeps discovery, delivery, and design systems humming.",
+  "items": [
+    "Design review rituals & playbooks",
+    "Inclusive design QA and accessibility audits",
+    "Component library governance"
+  ]
+}
