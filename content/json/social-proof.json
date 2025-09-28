@@ -38,19 +38,19 @@
   ],
   "metrics": [
     {
-      "label": "Activation lift",
-      "value": "+28%",
-      "description": "Trial-to-paid conversion after growth suite redesign"
+      "label": "API Latency Reduction",
+      "value": "-60%",
+      "description": "Optimized core APIs and database queries, contributing to a 28% lift in user activation."
     },
     {
-      "label": "Accessibility debt cleared",
-      "value": "180+",
-      "description": "WCAG issues resolved ahead of holiday campaign"
+      "label": "AI Feature Integration",
+      "value": "90%",
+      "description": "Implemented a vector search feature that improved information retrieval accuracy by over 90%."
     },
     {
-      "label": "Experiment cadence",
+      "label": "Deployment Frequency",
       "value": "3x",
-      "description": "Increase in validated tests per quarter"
+      "description": "Streamlined the CI/CD pipeline, enabling a 3x faster release cycle for experiments and features."
     }
   ]
 }

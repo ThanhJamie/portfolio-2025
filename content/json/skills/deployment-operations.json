@@ -1,0 +1,10 @@
+{
+  "id": "deployment-operations",
+  "title": "Deployment & Operations",
+  "summary": "Automating the deployment pipeline and managing cloud infrastructure to ensure application reliability, performance, and scalability.",
+  "items": [
+    "Implementing CI/CD pipelines with GitHub Actions for automated builds and deploys",
+    "Deploying and managing services on modern cloud platforms (AWS, Vercel)",
+    "Monitoring application performance and health to ensure high availability"
+  ]
+}

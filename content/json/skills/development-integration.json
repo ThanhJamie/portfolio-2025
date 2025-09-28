@@ -1,0 +1,10 @@
+{
+  "id": "development-integration",
+  "title": "End-to-End Development & Integration",
+  "summary": "Translating architectural designs into high-quality code across the stack and seamlessly integrating AI-powered features.",
+  "items": [
+    "Building responsive UIs (React, Next.js) connected to robust backend APIs (Node.js, Python)",
+    "Integrating LLMs (OpenAI, Llama) and third-party services to enhance application intelligence",
+    "Writing comprehensive tests across the stack, from unit (Vitest) to E2E tests (Playwright)"
+  ]
+}

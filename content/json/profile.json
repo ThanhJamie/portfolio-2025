@@ -1,10 +1,10 @@
 {
   "name": "Thanh Dang",
-  "headline": "Product Designer & Frontend Engineer",
-  "tagline": "Designing inclusive digital experiences that accelerate growth",
-  "location": "Melbourne, Australia · Remote friendly",
-  "primaryEmail": "hello@thanhdang.design",
-  "availability": "Open for fractional product leadership engagements",
+  "headline": "AI-powered Full-stack Developer",
+  "tagline": "Crafting end-to-end, AI-powered applications from database to user interface.",
+  "location": "Ho Chi Minh City, Vietnam · Remote friendly",
+  "primaryEmail": "hello@thanhdang.dev",
+  "availability": "Open to new opportunities as an AI-powered Full-stack Developer",
   "heroImage": {
     "src": "/images/7aef058d-55bf-4dcc-81c4-0f6e423348fa.jpg",
     "alt": "Portrait of Thanh Dang"
@@ -12,43 +12,37 @@
   "heroStats": [
     {
       "label": "Years of experience",
-      "value": "8+",
-      "description": "Leading product design & engineering teams"
-    },
-    {
-      "label": "Shipped launches",
-      "value": "35+",
-      "description": "Scaled SaaS, fintech, and growth experiments"
+      "value": "2+",
+      "description": "Building complete, production-ready applications across the full technology stack."
     }
   ],
   "callToAction": {
-    "label": "Request intro",
+    "label": "Contact Me",
     "href": "mailto:thanhjamieai@gmail.com"
   },
   "story": [
-    "I help founders and product teams translate ambitious ideas into inclusive, measurable experiences without losing momentum.",
-    "My practice blends product strategy, design systems, and frontend execution so teams can experiment quickly with confidence."
+    "As a Full-stack Developer, I specialize in building complete applications, bridging the gap between complex back-end logic and intuitive user interfaces.",
+    "My expertise covers the entire development lifecycle: architecting scalable databases (PostgreSQL, MongoDB), developing secure APIs (Node.js, Python), and building responsive front-ends (React, Next.js) that deliver a seamless user experience."
   ],
   "focusAreas": [
-    "Product discovery, systems design, experimentation operations",
-    "Design-to-code collaboration and accessible frontend delivery"
+    "End-to-End Application Architecture & Development",
+    "API Design & Implementation (Node.js, Python, REST, GraphQL)",
+    "Modern Frontend Development (React, Next.js, TypeScript)",
+    "AI/ML Model Integration (OpenAI, RAG Pipelines)",
+    "Database & Cloud Infrastructure (SQL, NoSQL, AWS, Docker)"
   ],
   "recentWins": [
-    "Lifted activation by 28% for Aurora Labs' growth suite",
-    "Resolved 180+ accessibility issues ahead of a multi-brand retail launch"
+    "Engineered and integrated a generative AI feature using the OpenAI API, which improved user content creation speed by 40%.",
+    "Led the back-end development for a new module in a B2B SaaS platform, processing over 100,000 requests per day with 99.9% uptime."
   ],
   "socialLinks": [
     {
       "label": "LinkedIn",
-      "href": "https://www.linkedin.com/in/thanhlovesfigma"
+      "href": "https://www.linkedin.com/in/thanhdang-dev"
     },
     {
       "label": "GitHub",
       "href": "https://github.com/ThanhJamie"
-    },
-    {
-      "label": "Dribbble",
-      "href": "https://dribbble.com/ThanhJamie"
     }
   ]
 }

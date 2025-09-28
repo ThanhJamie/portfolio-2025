@@ -1,0 +1,10 @@
+{
+  "id": "frontend-development",
+  "title": "Frontend Development",
+  "summary": "Crafting responsive, high-performance user interfaces with modern frameworks and a strong focus on code quality.",
+  "items": [
+    "Building complex applications with React, Next.js, and TypeScript",
+    "Efficient state management (Redux, Zustand) and API data fetching",
+    "End-to-end testing with Playwright/Cypress and performance auditing with Lighthouse"
+  ]
+}

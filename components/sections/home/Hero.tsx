@@ -13,7 +13,7 @@ interface HeroProps {
   testimonial?: SocialProof["testimonials"][number];
 }
 
-export function Hero({ profile, testimonial }: HeroProps) {
+export function Hero({ profile }: HeroProps) {
   const extendedStats: Array<{ label: string; value: string; description?: string }> = [
     ...profile.heroStats,
     {
@@ -136,21 +136,15 @@ export function Hero({ profile, testimonial }: HeroProps) {
               className="relative z-10 size-full object-cover"
             />
             <figcaption className="sr-only">{profile.heroImage.alt}</figcaption>
-            {testimonial ? (
-              <div className="absolute inset-x-6 bottom-6 z-20 rounded-2xl border border-border/70 bg-background/90 p-4 shadow-xl backdrop-blur">
-                <p className="text-sm text-foreground/90">“{testimonial.quote}”</p>
-                <p className="mt-3 text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-                  {testimonial.person.name} · {testimonial.person.title}
-                </p>
-              </div>
-            ) : null}
-          </figure>
-          {profile.recentWins.length > 0 ? (
-            <div className="absolute -bottom-10 right-8 hidden w-44 rounded-3xl border border-border/40 bg-background/80 p-4 text-xs leading-relaxed text-muted-foreground shadow-xl backdrop-blur lg:block">
-              <p className="font-semibold text-foreground">Recent win</p>
-              <p>{profile.recentWins[0]}</p>
+            <div className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2">
+              <Badge
+                className="border border-primary/50 bg-primary/95 px-4 py-2 text-sm font-semibold text-primary-foreground shadow-xl backdrop-blur-sm"
+                variant="default"
+              >
+                AI-powered Full-stack Developer
+              </Badge>
             </div>
-          ) : null}
+          </figure>
         </div>
       </Container>
     </section>
