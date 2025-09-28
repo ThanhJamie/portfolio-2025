@@ -3,11 +3,5 @@
   "version": 2,
   "framework": "nextjs",
   "installCommand": "pnpm install",
-  "buildCommand": "pnpm run deploy:check-env && pnpm run build",
-  "functions": {
-    "app/api/**/route.ts": {
-      "runtime": "nodejs20.x",
-      "maxDuration": 10
-    }
-  }
+  "buildCommand": "pnpm run deploy:check-env && pnpm run build"
 }
