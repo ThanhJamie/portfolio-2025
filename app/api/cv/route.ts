@@ -13,7 +13,6 @@ import {
 import type {
   EducationItem,
   ExperienceItem,
-  SkillGroup,
   ProjectCaseStudy,
 } from "@/lib/contentlayer/schemas";
 
@@ -59,7 +58,7 @@ export async function GET() {
     };
 
     // Transform skills data for CV with extracted technologies
-    const transformedSkills = skills.map((group: SkillGroup) => ({
+    const transformedSkills = skills.map((group) => ({
       category: group.title,
       summary: group.summary,
       items: extractTechnologies(group.items),

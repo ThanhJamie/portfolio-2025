@@ -1,6 +1,5 @@
 import { readFileSync, readdirSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import type { SafeParseReturnType } from "zod";
 import matter from "gray-matter";
 
@@ -34,8 +33,9 @@ import {
   type ToggleSettings,
 } from "./schemas";
 
-const moduleDir = dirname(fileURLToPath(import.meta.url));
-const projectRoot = join(moduleDir, "..", "..");
+// Find project root - handle both dev and production paths
+// Use current working directory which works correctly in both environments
+const projectRoot = process.cwd();
 const contentJsonDir = join(projectRoot, "content", "json");
 const contentMdxDir = join(projectRoot, "content", "mdx", "projects");
 
