@@ -30,8 +30,9 @@ export function SiteFooter() {
             Contact Me
           </Link>
           <a
-            href="/resume.pdf"
+            href="/api/cv"
             className={cn(buttonVariants({ size: "lg", variant: "outline" }))}
+            download
           >
             Download CV
           </a>

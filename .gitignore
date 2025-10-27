@@ -29,3 +29,4 @@ tsconfig.tsbuildinfo
 
 # npm lockfile (pnpm used instead)
 package-lock.json
+.venv

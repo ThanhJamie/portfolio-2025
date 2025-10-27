@@ -33,6 +33,10 @@ const config = {
   },
   overrides: [
     {
+      files: ["*.js", "*.mjs", "*.cjs"],
+      extends: ["plugin:@typescript-eslint/disable-type-checked"],
+    },
+    {
       files: ["**/*.ts", "**/*.tsx"],
       rules: {
         "@typescript-eslint/explicit-module-boundary-types": "off",
