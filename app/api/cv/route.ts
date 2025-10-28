@@ -21,6 +21,7 @@ import certificationsData from "@/content/json/certifications.json";
 import socialProofData from "@/content/json/social-proof.json";
 
 export const dynamic = "force-dynamic";
+export const dynamic2 = "force-dynamic";
 
 export async function GET() {
   try {
