@@ -15,6 +15,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",
+    "postinstall": "prisma generate",
     "prebuild": "pnpm run typecheck && pnpm run lint"
   },
   "dependencies": {
