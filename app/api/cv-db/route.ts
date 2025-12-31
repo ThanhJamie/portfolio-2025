@@ -43,14 +43,11 @@ export async function GET() {
     }
 
     // Group skills by category
-    const skillsByCategory = skills.reduce<Record<string, typeof skills>>(
-      (acc, skill) => {
-        if (!acc[skill.category]) acc[skill.category] = [];
-        acc[skill.category].push(skill);
-        return acc;
-      },
-      {},
-    );
+    const skillsByCategory: Record<string, typeof skills> = {};
+    for (const skill of skills) {
+      if (!skillsByCategory[skill.category]) skillsByCategory[skill.category] = [];
+      skillsByCategory[skill.category].push(skill);
+    }
 
     // Prepare CV data
     const cvData = {
