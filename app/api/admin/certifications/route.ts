@@ -1,7 +1,19 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import type { Prisma } from "@prisma/client";
 import { prisma, validateAuth, unauthorized } from "../_shared";
+
+// Type for certification input
+interface CertificationInput {
+  name: string;
+  issuer: string;
+  issueDate: Date | string;
+  expiryDate?: Date | string | null;
+  credentialId?: string | null;
+  credentialUrl?: string | null;
+  description?: string | null;
+  sortOrder?: number;
+  isVisible?: boolean;
+}
 
 // GET all certifications
 export async function GET(request: NextRequest) {
@@ -25,8 +37,10 @@ export async function POST(request: NextRequest) {
   if (!validateAuth(request)) return unauthorized();
 
   try {
-    const data = (await request.json()) as Prisma.CertificationCreateInput;
-    const certification = await prisma.certification.create({ data });
+    const data = (await request.json()) as CertificationInput;
+    const certification = await prisma.certification.create({
+      data: data as Parameters<typeof prisma.certification.create>[0]["data"],
+    });
     return NextResponse.json(certification, { status: 201 });
   } catch (error) {
     console.error(error);
@@ -42,9 +56,7 @@ export async function PUT(request: NextRequest) {
   if (!validateAuth(request)) return unauthorized();
 
   try {
-    const body = (await request.json()) as {
-      id?: string;
-    } & Prisma.CertificationUpdateInput;
+    const body = (await request.json()) as { id?: string } & Partial<CertificationInput>;
     const { id, ...updateData } = body;
 
     if (!id) {
@@ -53,7 +65,7 @@ export async function PUT(request: NextRequest) {
 
     const certification = await prisma.certification.update({
       where: { id },
-      data: updateData,
+      data: updateData as Parameters<typeof prisma.certification.update>[0]["data"],
     });
     return NextResponse.json(certification);
   } catch {

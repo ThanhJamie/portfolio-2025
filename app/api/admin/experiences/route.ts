@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import type { Prisma } from "@prisma/client";
+import type { ExperienceInput } from "../types";
 import { prisma, validateAuth, unauthorized } from "../_shared";
 
 // GET all experiences
@@ -22,8 +22,10 @@ export async function POST(request: NextRequest) {
   if (!validateAuth(request)) return unauthorized();
 
   try {
-    const data = (await request.json()) as Prisma.ExperienceCreateInput;
-    const experience = await prisma.experience.create({ data });
+    const data = (await request.json()) as ExperienceInput;
+    const experience = await prisma.experience.create({
+      data: data as Parameters<typeof prisma.experience.create>[0]["data"],
+    });
     return NextResponse.json(experience, { status: 201 });
   } catch (error) {
     console.error(error);
@@ -36,7 +38,7 @@ export async function PUT(request: NextRequest) {
   if (!validateAuth(request)) return unauthorized();
 
   try {
-    const body = (await request.json()) as { id?: string } & Prisma.ExperienceUpdateInput;
+    const body = (await request.json()) as { id?: string } & Partial<ExperienceInput>;
     const { id, ...updateData } = body;
 
     if (!id) {
@@ -45,7 +47,7 @@ export async function PUT(request: NextRequest) {
 
     const experience = await prisma.experience.update({
       where: { id },
-      data: updateData,
+      data: updateData as Parameters<typeof prisma.experience.update>[0]["data"],
     });
     return NextResponse.json(experience);
   } catch {

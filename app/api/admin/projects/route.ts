@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import type { Prisma } from "@prisma/client";
+import type { ProjectInput } from "../types";
 import { prisma, validateAuth, unauthorized } from "../_shared";
 
 // GET all projects
@@ -22,8 +22,10 @@ export async function POST(request: NextRequest) {
   if (!validateAuth(request)) return unauthorized();
 
   try {
-    const data = (await request.json()) as Prisma.ProjectCreateInput;
-    const project = await prisma.project.create({ data });
+    const data = (await request.json()) as ProjectInput;
+    const project = await prisma.project.create({
+      data: data as Parameters<typeof prisma.project.create>[0]["data"],
+    });
     return NextResponse.json(project, { status: 201 });
   } catch (error) {
     console.error(error);
@@ -36,7 +38,7 @@ export async function PUT(request: NextRequest) {
   if (!validateAuth(request)) return unauthorized();
 
   try {
-    const body = (await request.json()) as { id?: string } & Prisma.ProjectUpdateInput;
+    const body = (await request.json()) as { id?: string } & Partial<ProjectInput>;
     const { id, ...updateData } = body;
 
     if (!id) {
@@ -45,7 +47,7 @@ export async function PUT(request: NextRequest) {
 
     const project = await prisma.project.update({
       where: { id },
-      data: updateData,
+      data: updateData as Parameters<typeof prisma.project.update>[0]["data"],
     });
     return NextResponse.json(project);
   } catch {

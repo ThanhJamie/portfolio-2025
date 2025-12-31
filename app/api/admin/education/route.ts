@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import type { Prisma } from "@prisma/client";
+import type { EducationInput } from "../types";
 import { prisma, validateAuth, unauthorized } from "../_shared";
 
 // GET all education
@@ -22,8 +22,10 @@ export async function POST(request: NextRequest) {
   if (!validateAuth(request)) return unauthorized();
 
   try {
-    const data = (await request.json()) as Prisma.EducationCreateInput;
-    const education = await prisma.education.create({ data });
+    const data = (await request.json()) as EducationInput;
+    const education = await prisma.education.create({
+      data: data as Parameters<typeof prisma.education.create>[0]["data"],
+    });
     return NextResponse.json(education, { status: 201 });
   } catch (error) {
     console.error(error);
@@ -36,7 +38,7 @@ export async function PUT(request: NextRequest) {
   if (!validateAuth(request)) return unauthorized();
 
   try {
-    const body = (await request.json()) as { id?: string } & Prisma.EducationUpdateInput;
+    const body = (await request.json()) as { id?: string } & Partial<EducationInput>;
     const { id, ...updateData } = body;
 
     if (!id) {
@@ -45,7 +47,7 @@ export async function PUT(request: NextRequest) {
 
     const education = await prisma.education.update({
       where: { id },
-      data: updateData,
+      data: updateData as Parameters<typeof prisma.education.update>[0]["data"],
     });
     return NextResponse.json(education);
   } catch {

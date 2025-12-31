@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import type { Prisma } from "@prisma/client";
+import type { SkillInput } from "../types";
 import { prisma, validateAuth, unauthorized } from "../_shared";
 
 // GET all skills
@@ -22,8 +22,10 @@ export async function POST(request: NextRequest) {
   if (!validateAuth(request)) return unauthorized();
 
   try {
-    const data = (await request.json()) as Prisma.SkillCreateInput;
-    const skill = await prisma.skill.create({ data });
+    const data = (await request.json()) as SkillInput;
+    const skill = await prisma.skill.create({
+      data: data as Parameters<typeof prisma.skill.create>[0]["data"],
+    });
     return NextResponse.json(skill, { status: 201 });
   } catch (error) {
     console.error(error);
@@ -36,7 +38,7 @@ export async function PUT(request: NextRequest) {
   if (!validateAuth(request)) return unauthorized();
 
   try {
-    const body = (await request.json()) as { id?: string } & Prisma.SkillUpdateInput;
+    const body = (await request.json()) as { id?: string } & Partial<SkillInput>;
     const { id, ...updateData } = body;
 
     if (!id) {
@@ -45,7 +47,7 @@ export async function PUT(request: NextRequest) {
 
     const skill = await prisma.skill.update({
       where: { id },
-      data: updateData,
+      data: updateData as Parameters<typeof prisma.skill.update>[0]["data"],
     });
     return NextResponse.json(skill);
   } catch {

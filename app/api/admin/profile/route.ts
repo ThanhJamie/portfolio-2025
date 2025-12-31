@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import type { Prisma } from "@prisma/client";
+import type { ProfileInput } from "../types";
 import { prisma, validateAuth, unauthorized } from "../_shared";
 
 // GET all profiles (usually just one)
@@ -20,8 +20,10 @@ export async function POST(request: NextRequest) {
   if (!validateAuth(request)) return unauthorized();
 
   try {
-    const data = (await request.json()) as Prisma.ProfileCreateInput;
-    const profile = await prisma.profile.create({ data });
+    const data = (await request.json()) as ProfileInput;
+    const profile = await prisma.profile.create({
+      data: data as Parameters<typeof prisma.profile.create>[0]["data"],
+    });
     return NextResponse.json(profile, { status: 201 });
   } catch {
     return NextResponse.json({ error: "Failed to create profile" }, { status: 500 });
@@ -33,7 +35,7 @@ export async function PUT(request: NextRequest) {
   if (!validateAuth(request)) return unauthorized();
 
   try {
-    const body = (await request.json()) as { id?: string } & Prisma.ProfileUpdateInput;
+    const body = (await request.json()) as { id?: string } & Partial<ProfileInput>;
     const { id, ...updateData } = body;
 
     if (!id) {
@@ -42,7 +44,7 @@ export async function PUT(request: NextRequest) {
 
     const profile = await prisma.profile.update({
       where: { id },
-      data: updateData,
+      data: updateData as Parameters<typeof prisma.profile.update>[0]["data"],
     });
     return NextResponse.json(profile);
   } catch {
