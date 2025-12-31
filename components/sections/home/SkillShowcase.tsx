@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
 import { buttonVariants } from "@/components/ui/button";
-import type { SkillGroup } from "@/lib/contentlayer/schemas";
+import type { SkillGroup } from "@/lib/content/loaders";
 import { cn } from "@/lib/utils";
 
 interface SkillShowcaseProps {

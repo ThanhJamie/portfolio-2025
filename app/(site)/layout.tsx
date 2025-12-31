@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-import type { Profile, ProjectCaseStudy } from "@/lib/contentlayer/schemas";
+import type { Profile, ProjectCaseStudy } from "@/lib/content/loaders";
 
 import { Container } from "@/components/ui/container";
 import { SiteFooter } from "@/components/ui/SiteFooter";
 import { SiteHeader } from "@/components/ui/SiteHeader";
-import { loadSiteContent } from "@/lib/contentlayer/loaders";
+import { loadSiteContent } from "@/lib/content/loaders";
 import {
   buildMetadataBase,
   buildPersonJsonLd,
@@ -15,6 +15,9 @@ import {
   buildSiteUrl,
   getSiteBaseUrl,
 } from "@/lib/seo/index";
+
+// Force dynamic rendering - database content
+export const dynamic = "force-dynamic";
 
 interface SiteLayoutProps {
   children: ReactNode;
@@ -39,8 +42,8 @@ const buildKeywords = (profile: Profile, projects: ProjectCaseStudy[]) => {
 const toAbsoluteUrl = (path: string) =>
   path.startsWith("http") ? path : buildSiteUrl(path, getSiteBaseUrl());
 
-export function generateMetadata(): Metadata {
-  const { profile, projects } = loadSiteContent();
+export async function generateMetadata(): Promise<Metadata> {
+  const { profile, projects } = await loadSiteContent();
   const siteUrl = getSiteBaseUrl();
   const canonicalUrl = buildSiteUrl("/", siteUrl);
   const featuredProject = projects.find((project) => project.featured) ?? projects[0];
@@ -102,8 +105,8 @@ export function generateMetadata(): Metadata {
   } satisfies Metadata;
 }
 
-export default function SiteLayout({ children }: SiteLayoutProps) {
-  const siteContent = loadSiteContent();
+export default async function SiteLayout({ children }: SiteLayoutProps) {
+  const siteContent = await loadSiteContent();
   const siteUrl = getSiteBaseUrl();
   const projectJsonLd = siteContent.projects.map((project) =>
     buildProjectJsonLd(siteUrl, project, siteContent.profile.name),

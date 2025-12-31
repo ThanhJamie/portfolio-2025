@@ -1,5 +1,3 @@
-import { withContentlayer } from "next-contentlayer";
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
@@ -12,10 +10,14 @@ const nextConfig = {
     optimizePackageImports: [
       "lucide-react",
       "@radix-ui/react-dialog",
-      "@radix-ui/react-dropdown-menu",
-      "@radix-ui/react-navigation-menu",
-      "@radix-ui/react-avatar",
       "@radix-ui/react-label",
+    ],
+    serverComponentsExternalPackages: [
+      "@libsql/client",
+      "@libsql/linux-x64-gnu",
+      "@libsql/hrana-client",
+      "libsql",
+      "@prisma/adapter-libsql",
     ],
   },
   compiler: {
@@ -29,4 +31,4 @@ const nextConfig = {
   },
 };
 
-export default withContentlayer(nextConfig);
+export default nextConfig;

@@ -1,12 +1,15 @@
 import type { MetadataRoute } from "next";
 
-import { loadSiteContent } from "@/lib/contentlayer/loaders";
+import { loadSiteContent } from "@/lib/content/loaders";
 import { buildSiteUrl } from "@/lib/seo/index";
+
+// Force dynamic - database content
+export const dynamic = "force-dynamic";
 
 const STATIC_ROUTES = ["/", "/about", "/projects", "/contact"] as const;
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const { projects } = loadSiteContent();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const { projects } = await loadSiteContent();
   const generatedAt = new Date();
 
   const coreEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((route) => ({
@@ -18,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const projectEntries: MetadataRoute.Sitemap = projects.map((project) => ({
     url: buildSiteUrl(`/projects/${project.slug}`),
-    lastModified: project.publishedAt,
+    lastModified: project.publishedAt ? new Date(project.publishedAt) : generatedAt,
     changeFrequency: "monthly",
     priority: 0.6,
   }));

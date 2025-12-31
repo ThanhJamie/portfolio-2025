@@ -5,7 +5,7 @@ import type { Route } from "next";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import type { Profile, SocialProof } from "@/lib/contentlayer/schemas";
+import type { Profile, SocialProof } from "@/lib/content/loaders";
 import { cn } from "@/lib/utils";
 
 interface HeroProps {
@@ -81,24 +81,25 @@ export function Hero({ profile }: HeroProps) {
             >
               View projects
             </Link>
-            <Link
-              href={"/contact" as Route}
+            <a
+              href="/api/cv"
+              download="Thanh_Dang_Resume.pdf"
               className={cn(
                 buttonVariants({ size: "lg", variant: "secondary" }),
                 "bg-secondary/80 text-secondary-foreground",
               )}
             >
-              Book a collaboration call
-            </Link>
-            <a
-              href={profile.callToAction.href}
+              Download Resume
+            </a>
+            <Link
+              href={"/contact" as Route}
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
                 "border-dashed border-border/70 text-foreground/80",
               )}
             >
-              {profile.callToAction.label}
-            </a>
+              Contact Me
+            </Link>
           </div>
 
           <dl className="grid gap-4 rounded-3xl border border-border/60 bg-background/80 p-6 shadow-xl backdrop-blur sm:grid-cols-2 lg:max-w-2xl">

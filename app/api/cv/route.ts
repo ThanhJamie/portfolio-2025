@@ -9,29 +9,37 @@ import {
   loadProfile,
   loadProjectCaseStudies,
   loadTechStack,
-} from "@/lib/contentlayer/loaders";
-import type {
-  EducationItem,
-  ExperienceItem,
-  ProjectCaseStudy,
-} from "@/lib/contentlayer/schemas";
-
-// Import certifications and social proof data
-import certificationsData from "@/content/json/certifications.json";
-import socialProofData from "@/content/json/social-proof.json";
+  loadCertificationItems,
+  loadSocialProof,
+  type EducationItem,
+  type ExperienceItem,
+  type ProjectCaseStudy,
+} from "@/lib/content/loaders";
 
 export const dynamic = "force-dynamic";
-export const dynamic2 = "force-dynamic";
 
 export async function GET() {
   try {
-    // Load all data from contentlayer
-    const profile = loadProfile();
-    const experience = loadExperienceItems();
-    const education = loadEducationEntries();
-    const skills = loadSkillGroups();
-    const projects = loadProjectCaseStudies();
-    const techStack = loadTechStack();
+    // Load all data from database
+    const [
+      profile,
+      experience,
+      education,
+      skills,
+      projects,
+      techStack,
+      certifications,
+      socialProof,
+    ] = await Promise.all([
+      loadProfile(),
+      loadExperienceItems(),
+      loadEducationEntries(),
+      loadSkillGroups(),
+      loadProjectCaseStudies(),
+      loadTechStack(),
+      loadCertificationItems(),
+      loadSocialProof(),
+    ]);
 
     // Sort experience by date (newest first)
     const sortedExperience = experience.sort((a: ExperienceItem, b: ExperienceItem) => {
@@ -105,19 +113,19 @@ export async function GET() {
         .slice(0, 3)
         .map((p: ProjectCaseStudy) => ({
           title: p.title,
-          client: p.client,
+          client: p.client || "",
           role: p.role,
-          timeline: p.timeline,
+          timeline: p.timeline || "",
           summary: p.summary,
           stack: p.stack,
           outcomes: p.outcomes,
         })),
-      certifications: certificationsData.slice(0, 7).map((cert) => ({
+      certifications: certifications.slice(0, 7).map((cert) => ({
         title: cert.title,
-        time: cert.time,
-        link: cert.link,
+        time: cert.time || "",
+        link: cert.link || "",
       })),
-      metrics: socialProofData.metrics,
+      metrics: socialProof.metrics,
     };
 
     // Generate PDF - CVTemplate is a function component that returns a Document

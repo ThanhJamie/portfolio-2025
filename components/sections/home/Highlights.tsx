@@ -2,7 +2,7 @@ import { Accessibility, Code2, Rocket } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
-import type { SocialProof } from "@/lib/contentlayer/schemas";
+import type { SocialProof } from "@/lib/content/loaders";
 
 interface HighlightsProps {
   metrics: SocialProof["metrics"];

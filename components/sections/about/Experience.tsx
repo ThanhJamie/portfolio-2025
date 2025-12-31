@@ -1,5 +1,5 @@
 import { Container } from "@/components/ui/container";
-import type { ExperienceItem } from "@/lib/contentlayer/schemas";
+import type { ExperienceItem } from "@/lib/content/loaders";
 
 interface ExperienceProps {
   experience: ExperienceItem[];

@@ -1,5 +1,5 @@
 import { Container } from "@/components/ui/container";
-import type { Profile } from "@/lib/contentlayer/schemas";
+import type { Profile } from "@/lib/content/loaders";
 
 interface StoryProps {
   profile: Profile;

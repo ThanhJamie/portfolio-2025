@@ -1,3 +1,8 @@
+/**
+ * React-cached hooks for loading content from database
+ * These hooks memoize database calls during SSR/SSG
+ */
+
 import { cache as reactCache } from "react";
 
 import {
@@ -5,31 +10,30 @@ import {
   loadEducationEntries,
   loadExperienceItems,
   loadProfile,
-  loadProjectCaseStudies,
   loadSkillGroups,
   loadSocialProof,
-  loadToggleSettings,
   loadTechStack,
+  loadToggleSettings,
+  loadProjectCaseStudies,
+  type EducationItem,
+  type ExperienceItem,
+  type Profile,
+  type CertificationItem,
+  type SkillGroup,
+  type SocialProof,
+  type TechStack,
+  type ToggleSettings,
+  type ProjectCaseStudy,
 } from "./loaders";
-import type {
-  EducationItem,
-  ExperienceItem,
-  Profile,
-  ProjectCaseStudy,
-  CertificationItem,
-  SkillGroup,
-  SocialProof,
-  TechStack,
-  ToggleSettings,
-} from "./schemas";
 
-const fallbackCache = <TValue>(fn: () => TValue): (() => TValue) => {
+// Fallback cache for environments where React cache isn't available
+const fallbackCache = <TValue>(fn: () => Promise<TValue>): (() => Promise<TValue>) => {
   let hasValue = false;
   let value: TValue;
 
-  return () => {
+  return async () => {
     if (!hasValue) {
-      value = fn();
+      value = await fn();
       hasValue = true;
     }
     return value;
@@ -38,8 +42,10 @@ const fallbackCache = <TValue>(fn: () => TValue): (() => TValue) => {
 
 const cacheImplementation = typeof reactCache === "function" ? reactCache : fallbackCache;
 
-const cacheResult = <TValue>(fn: () => TValue): (() => TValue) => cacheImplementation(fn);
+const cacheResult = <TValue>(fn: () => Promise<TValue>): (() => Promise<TValue>) =>
+  cacheImplementation(fn);
 
+// Cached data fetchers
 export const getProfile = cacheResult<Profile>(() => loadProfile());
 export const getSkillGroups = cacheResult<SkillGroup[]>(() => loadSkillGroups());
 export const getExperienceItems = cacheResult<ExperienceItem[]>(() =>
@@ -52,15 +58,21 @@ export const getCertificationItems = cacheResult<CertificationItem[]>(() =>
   loadCertificationItems(),
 );
 export const getSocialProof = cacheResult<SocialProof>(() => loadSocialProof());
-export const getToggleSettings = cacheResult<ToggleSettings>(() => loadToggleSettings());
 export const getTechStack = cacheResult<TechStack>(() => loadTechStack());
-export const getProjects = cacheResult<ProjectCaseStudy[]>(() =>
+export const getToggleSettings = cacheResult<ToggleSettings>(() => loadToggleSettings());
+export const getProjectCaseStudies = cacheResult<ProjectCaseStudy[]>(() =>
   loadProjectCaseStudies(),
 );
 
-export const getSiteEssentials = cacheResult(() => ({
-  profile: getProfile(),
-  socialProof: getSocialProof(),
-  toggles: getToggleSettings(),
-  techStack: getTechStack(),
-}));
+// Re-export types for convenience
+export type {
+  Profile,
+  SkillGroup,
+  ExperienceItem,
+  EducationItem,
+  CertificationItem,
+  SocialProof,
+  TechStack,
+  ToggleSettings,
+  ProjectCaseStudy,
+};

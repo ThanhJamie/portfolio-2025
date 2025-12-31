@@ -1,8 +1,11 @@
-import type {
-  Profile,
-  ProjectCaseStudy,
-  ProjectGalleryItem,
-} from "@/lib/contentlayer/schemas";
+import type { Profile, ProjectCaseStudy } from "@/lib/content/loaders";
+
+interface ProjectGalleryItem {
+  type: string;
+  src: string;
+  alt: string;
+  caption?: string;
+}
 
 const DEFAULT_SITE_URL = "https://thanh.dang";
 

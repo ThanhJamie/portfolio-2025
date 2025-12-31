@@ -8,14 +8,20 @@ import {
   getExperienceItems,
   getProfile,
   getTechStack,
-} from "@/lib/contentlayer/hooks";
+} from "@/lib/content/hooks";
 
-export default function AboutPage() {
-  const profile = getProfile();
-  const experienceItems = getExperienceItems();
-  const educationItems = getEducationItems();
-  const certificationItems = getCertificationItems();
-  const techStack = getTechStack();
+// Force dynamic rendering - database content
+export const dynamic = "force-dynamic";
+
+export default async function AboutPage() {
+  const [profile, experienceItems, educationItems, certificationItems, techStack] =
+    await Promise.all([
+      getProfile(),
+      getExperienceItems(),
+      getEducationItems(),
+      getCertificationItems(),
+      getTechStack(),
+    ]);
 
   return (
     <div className="-mx-6 space-y-16 md:-mx-8">

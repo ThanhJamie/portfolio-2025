@@ -1,0 +1,290 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ==================== PROFILE ====================
+model Profile {
+  id            String   @id @default(cuid())
+  name          String
+  headline      String   // e.g., "AI-powered Full-stack Developer"
+  tagline       String   @default("")
+  email         String   @unique
+  phone         String?
+  location      String   @default("")
+  availability  String   @default("")
+  
+  // Avatar/Photo
+  avatarUrl     String?
+  
+  // Social Links
+  linkedinUrl   String?
+  githubUrl     String?
+  websiteUrl    String?
+  
+  // Bio/Story
+  summary       String   @default("") // Main professional summary
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// ==================== EXPERIENCE ====================
+model Experience {
+  id          String   @id @default(cuid())
+  company     String
+  position    String
+  location    String?
+  startDate   DateTime
+  endDate     DateTime?
+  isCurrent   Boolean  @default(false)
+  
+  // Rich description
+  description String   @default("") // Main responsibilities
+  highlights  String   @default("") // JSON array of bullet points
+  
+  // Categorization
+  employmentType String @default("Full-time") // Full-time, Part-time, Contract, Internship
+  
+  // Order
+  sortOrder   Int      @default(0)
+  isVisible   Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==================== EDUCATION ====================
+model Education {
+  id          String   @id @default(cuid())
+  institution String
+  degree      String   // e.g., "Bachelor of Science"
+  field       String   // e.g., "Computer Science"
+  location    String?
+  startDate   DateTime
+  endDate     DateTime?
+  isCurrent   Boolean  @default(false)
+  
+  gpa         String?
+  description String   @default("")
+  highlights  String   @default("") // JSON array
+  
+  sortOrder   Int      @default(0)
+  isVisible   Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==================== SKILLS ====================
+model Skill {
+  id          String   @id @default(cuid())
+  name        String
+  category    String   // e.g., "Frontend", "Backend", "AI/ML", "DevOps", "Tools"
+  level       Int      @default(3) // 1-5 proficiency
+  
+  // For display
+  icon        String?  // Icon name or URL
+  
+  sortOrder   Int      @default(0)
+  isVisible   Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==================== PROJECTS ====================
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  
+  // Basic info
+  summary     String   @default("") // Short description
+  description String   @default("") // Full description (can be markdown)
+  
+  // Problem-Solution
+  problem     String   @default("")
+  approach    String   @default("") // JSON array of approach items
+  role        String   @default("")
+  
+  // Links
+  liveUrl     String?
+  githubUrl   String?
+  caseStudyUrl String?
+  
+  // Media
+  thumbnailUrl String?
+  heroImageUrl String?
+  gallery     String   @default("[]") // JSON array of image objects
+  
+  // Tech stack
+  techStack   String   @default("[]") // JSON array of technologies
+  
+  // Outcomes/Results
+  outcomes    String   @default("[]") // JSON array of {label, value}
+  
+  // Categorization
+  category    String   @default("Web Development") // Web, Mobile, AI, etc.
+  tags        String   @default("[]") // JSON array
+  client      String?
+  timeline    String?
+  
+  // Display options
+  featured    Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  isVisible   Boolean  @default(true)
+  
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==================== CERTIFICATIONS ====================
+model Certification {
+  id            String   @id @default(cuid())
+  name          String
+  issuer        String
+  issueDate     DateTime
+  expiryDate    DateTime?
+  credentialId  String?
+  credentialUrl String?
+  
+  description   String   @default("")
+  
+  sortOrder     Int      @default(0)
+  isVisible     Boolean  @default(true)
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// ==================== FOCUS AREAS ====================
+model FocusArea {
+  id          String   @id @default(cuid())
+  title       String
+  description String   @default("")
+  icon        String?
+  
+  sortOrder   Int      @default(0)
+  isVisible   Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==================== SITE SETTINGS ====================
+model SiteSettings {
+  id                    String   @id @default(cuid())
+  servicesEnabled       Boolean  @default(false)
+  blogEnabled           Boolean  @default(false)
+  testimonialsEnabled   Boolean  @default(true)
+  
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+// ==================== TESTIMONIALS ====================
+model Testimonial {
+  id          String   @id @default(cuid())
+  quote       String
+  personName  String
+  personTitle String
+  company     String
+  avatarUrl   String?
+  
+  sortOrder   Int      @default(0)
+  isVisible   Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==================== COMPANY LOGOS ====================
+model CompanyLogo {
+  id          String   @id @default(cuid())
+  name        String
+  imageUrl    String
+  altText     String?
+  
+  sortOrder   Int      @default(0)
+  isVisible   Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==================== METRICS ====================
+model Metric {
+  id          String   @id @default(cuid())
+  label       String
+  value       String
+  description String   @default("")
+  
+  sortOrder   Int      @default(0)
+  isVisible   Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==================== TECH STACK ====================
+model TechStackItem {
+  id          String   @id @default(cuid())
+  name        String
+  summary     String   @default("")
+  category    String   // frontend, backend, ai_and_ml, tools_and_devops, concepts_and_principles
+  icon        String?
+  
+  sortOrder   Int      @default(0)
+  isVisible   Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==================== HERO STATS ====================
+model HeroStat {
+  id          String   @id @default(cuid())
+  label       String
+  value       String
+  description String   @default("")
+  
+  sortOrder   Int      @default(0)
+  isVisible   Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==================== RECENT WINS ====================
+model RecentWin {
+  id          String   @id @default(cuid())
+  content     String
+  
+  sortOrder   Int      @default(0)
+  isVisible   Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==================== SOCIAL LINKS ====================
+model SocialLink {
+  id          String   @id @default(cuid())
+  label       String   // LinkedIn, GitHub, Twitter, etc.
+  url         String
+  icon        String?
+  
+  sortOrder   Int      @default(0)
+  isVisible   Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

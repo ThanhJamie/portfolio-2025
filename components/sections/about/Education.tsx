@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
-import type { CertificationItem, EducationItem } from "@/lib/contentlayer/schemas";
+import type { CertificationItem, EducationItem } from "@/lib/content/loaders";
 
 interface EducationProps {
   education: EducationItem[];

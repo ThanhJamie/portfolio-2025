@@ -13,6 +13,11 @@ dist/
 # Environment
 .env*
 
+# Database
+*.db
+*.db-journal
+prisma/dev.db
+
 # Logs and coverage
 *.log
 *.log*
@@ -30,3 +35,4 @@ tsconfig.tsbuildinfo
 # npm lockfile (pnpm used instead)
 package-lock.json
 .venv
+/lib/generated/prisma

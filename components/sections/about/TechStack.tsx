@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
-import type { TechStack } from "@/lib/contentlayer/schemas";
+import type { TechStack } from "@/lib/content/loaders";
 
 interface TechStackProps {
   tech: TechStack;

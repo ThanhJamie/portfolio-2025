@@ -1,6 +1,8 @@
 ignoredBuiltDependencies:
+  - better-sqlite3
   - contentlayer
   - esbuild
+  - prisma
   - protobufjs
   - puppeteer
   - unrs-resolver
