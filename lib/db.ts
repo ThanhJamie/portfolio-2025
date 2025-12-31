@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaLibSql } from "@prisma/adapter-libsql";
 
+type PrismaClientType = InstanceType<typeof PrismaClient>;
+
 // Support both Turso (production) and local SQLite (development)
 const tursoUrl = process.env.TURSO_DATABASE_URL;
 const tursoAuthToken = process.env.TURSO_AUTH_TOKEN;
@@ -14,7 +16,7 @@ const adapter = new PrismaLibSql({
 });
 
 const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined;
+  prisma: PrismaClientType | undefined;
 };
 
 export const prisma = globalForPrisma.prisma ?? new PrismaClient({ adapter });

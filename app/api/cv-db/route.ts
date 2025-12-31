@@ -63,48 +63,90 @@ export async function GET() {
         githubUrl: profile.githubUrl,
         websiteUrl: profile.websiteUrl,
       },
-      experiences: experiences.map((exp) => ({
-        company: exp.company,
-        position: exp.position,
-        location: exp.location,
-        startDate: exp.startDate,
-        endDate: exp.endDate,
-        isCurrent: exp.isCurrent,
-        description: exp.description,
-        highlights: safeParseJSON<string[]>(exp.highlights, []),
-        employmentType: exp.employmentType,
-      })),
-      education: education.map((edu) => ({
-        institution: edu.institution,
-        degree: edu.degree,
-        field: edu.field,
-        location: edu.location,
-        startDate: edu.startDate,
-        endDate: edu.endDate,
-        isCurrent: edu.isCurrent,
-        gpa: edu.gpa,
-      })),
+      experiences: experiences.map(
+        (exp: {
+          company: string;
+          position: string;
+          location: string | null;
+          startDate: Date;
+          endDate: Date | null;
+          isCurrent: boolean;
+          description: string;
+          highlights: string | null;
+          employmentType: string | null;
+        }) => ({
+          company: exp.company,
+          position: exp.position,
+          location: exp.location,
+          startDate: exp.startDate,
+          endDate: exp.endDate,
+          isCurrent: exp.isCurrent,
+          description: exp.description,
+          highlights: safeParseJSON<string[]>(exp.highlights, []),
+          employmentType: exp.employmentType || "",
+        }),
+      ),
+      education: education.map(
+        (edu: {
+          institution: string;
+          degree: string;
+          field: string;
+          location: string | null;
+          startDate: Date | null;
+          endDate: Date | null;
+          isCurrent: boolean;
+          gpa: string | null;
+        }) => ({
+          institution: edu.institution,
+          degree: edu.degree,
+          field: edu.field,
+          location: edu.location || "",
+          startDate: edu.startDate || new Date(),
+          endDate: edu.endDate,
+          isCurrent: edu.isCurrent,
+          gpa: edu.gpa || "",
+        }),
+      ),
       skills: Object.entries(skillsByCategory).map(([category, items]) => ({
         category,
-        items: items.map((s) => s.name),
+        items: items.map((s: { name: string }) => s.name),
       })),
-      projects: projects.map((p) => ({
-        title: p.title,
-        role: p.role,
-        client: p.client,
-        timeline: p.timeline,
-        summary: p.summary,
-        techStack: safeParseJSON<string[]>(p.techStack, []),
-        outcomes: safeParseJSON<{ label: string; value: string }[]>(p.outcomes, []),
-        liveUrl: p.liveUrl,
-        githubUrl: p.githubUrl,
-      })),
-      certifications: certifications.map((cert) => ({
-        name: cert.name,
-        issuer: cert.issuer,
-        issueDate: cert.issueDate,
-        credentialUrl: cert.credentialUrl,
-      })),
+      projects: projects.map(
+        (p: {
+          title: string;
+          role: string | null;
+          client: string | null;
+          timeline: string | null;
+          summary: string;
+          techStack: string | null;
+          outcomes: string | null;
+          liveUrl: string | null;
+          githubUrl: string | null;
+        }) => ({
+          title: p.title,
+          role: p.role || "",
+          client: p.client || "",
+          timeline: p.timeline || "",
+          summary: p.summary,
+          techStack: safeParseJSON<string[]>(p.techStack, []),
+          outcomes: safeParseJSON<{ label: string; value: string }[]>(p.outcomes, []),
+          liveUrl: p.liveUrl || "",
+          githubUrl: p.githubUrl || "",
+        }),
+      ),
+      certifications: certifications.map(
+        (cert: {
+          name: string;
+          issuer: string;
+          issueDate: Date;
+          credentialUrl: string | null;
+        }) => ({
+          name: cert.name,
+          issuer: cert.issuer,
+          issueDate: cert.issueDate,
+          credentialUrl: cert.credentialUrl,
+        }),
+      ),
     };
 
     // Generate PDF - CVTemplateFromDB returns a Document element
@@ -127,7 +169,8 @@ export async function GET() {
   }
 }
 
-function safeParseJSON<T>(str: string, fallback: T): T {
+function safeParseJSON<T>(str: string | null | undefined, fallback: T): T {
+  if (!str) return fallback;
   try {
     return JSON.parse(str) as T;
   } catch {

@@ -146,19 +146,21 @@ export async function loadProfile(): Promise<Profile> {
       src: profile.avatarUrl || "/images/placeholder.jpg",
       alt: `Portrait of ${profile.name}`,
     },
-    heroStats: heroStats.map((s) => ({
-      label: s.label,
-      value: s.value,
-      description: s.description,
-    })),
+    heroStats: heroStats.map(
+      (s: { label: string; value: string; description: string }) => ({
+        label: s.label,
+        value: s.value,
+        description: s.description,
+      }),
+    ),
     callToAction: {
       label: "Contact Me",
       href: `mailto:${profile.email}`,
     },
     story: profile.summary.split("\n\n").filter(Boolean),
-    focusAreas: focusAreas.map((f) => f.title),
-    recentWins: recentWins.map((w) => w.content),
-    socialLinks: socialLinks.map((l) => ({
+    focusAreas: focusAreas.map((f: { title: string }) => f.title),
+    recentWins: recentWins.map((w: { content: string }) => w.content),
+    socialLinks: socialLinks.map((l: { label: string; url: string }) => ({
       label: l.label,
       href: l.url,
     })),
@@ -172,16 +174,13 @@ export async function loadSkillGroups(): Promise<SkillGroup[]> {
   });
 
   // Group skills by category
-  const grouped = skills.reduce(
-    (acc, skill) => {
-      if (!acc[skill.category]) {
-        acc[skill.category] = [];
-      }
-      acc[skill.category].push(skill.name);
-      return acc;
-    },
-    {} as Record<string, string[]>,
-  );
+  const grouped: Record<string, string[]> = {};
+  for (const skill of skills) {
+    if (!grouped[skill.category]) {
+      grouped[skill.category] = [];
+    }
+    grouped[skill.category].push(skill.name);
+  }
 
   return Object.entries(grouped).map(([category, items]) => ({
     id: category.toLowerCase().replace(/\s+/g, "-"),
@@ -197,16 +196,28 @@ export async function loadExperienceItems(): Promise<ExperienceItem[]> {
     orderBy: { startDate: "desc" },
   });
 
-  return experiences.map((exp) => ({
-    id: exp.id,
-    company: exp.company,
-    role: exp.position,
-    location: exp.location || "",
-    startDate: exp.startDate.toISOString().split("T")[0],
-    endDate: exp.isCurrent ? "Present" : exp.endDate?.toISOString().split("T")[0] || "",
-    summary: exp.description,
-    highlights: JSON.parse(exp.highlights || "[]") as string[],
-  }));
+  return experiences.map(
+    (exp: {
+      id: string;
+      company: string;
+      position: string;
+      location: string | null;
+      startDate: Date;
+      endDate: Date | null;
+      isCurrent: boolean;
+      description: string;
+      highlights: string | null;
+    }) => ({
+      id: exp.id,
+      company: exp.company,
+      role: exp.position,
+      location: exp.location || "",
+      startDate: exp.startDate.toISOString().split("T")[0],
+      endDate: exp.isCurrent ? "Present" : exp.endDate?.toISOString().split("T")[0] || "",
+      summary: exp.description,
+      highlights: JSON.parse(exp.highlights || "[]") as string[],
+    }),
+  );
 }
 
 export async function loadEducationEntries(): Promise<EducationItem[]> {
@@ -215,12 +226,19 @@ export async function loadEducationEntries(): Promise<EducationItem[]> {
     orderBy: { endDate: "desc" },
   });
 
-  return education.map((edu) => ({
-    institution: edu.institution,
-    credential: edu.degree,
-    yearCompleted: edu.endDate?.getFullYear().toString() || "",
-    location: edu.location || "",
-  }));
+  return education.map(
+    (edu: {
+      institution: string;
+      degree: string;
+      endDate: Date | null;
+      location: string | null;
+    }) => ({
+      institution: edu.institution,
+      credential: edu.degree,
+      yearCompleted: edu.endDate?.getFullYear().toString() || "",
+      location: edu.location || "",
+    }),
+  );
 }
 
 export async function loadCertificationItems(): Promise<CertificationItem[]> {
@@ -229,12 +247,19 @@ export async function loadCertificationItems(): Promise<CertificationItem[]> {
     orderBy: { issueDate: "desc" },
   });
 
-  return certs.map((cert) => ({
-    title: cert.name,
-    time: cert.issueDate.toISOString().split("T")[0],
-    link: cert.credentialUrl || "",
-    tech: cert.description ? cert.description.split(", ").filter(Boolean) : [],
-  }));
+  return certs.map(
+    (cert: {
+      name: string;
+      issueDate: Date;
+      credentialUrl: string | null;
+      description: string | null;
+    }) => ({
+      title: cert.name,
+      time: cert.issueDate.toISOString().split("T")[0],
+      link: cert.credentialUrl || "",
+      tech: cert.description ? cert.description.split(", ").filter(Boolean) : [],
+    }),
+  );
 }
 
 export async function loadSocialProof(): Promise<SocialProof> {
@@ -251,21 +276,29 @@ export async function loadSocialProof(): Promise<SocialProof> {
   ]);
 
   return {
-    testimonials: testimonials.map((t) => ({
-      quote: t.quote,
-      person: {
-        name: t.personName,
-        title: t.personTitle,
-        company: t.company,
-        avatar: t.avatarUrl || "",
-      },
-    })),
-    logos: logos.map((l) => ({
+    testimonials: testimonials.map(
+      (t: {
+        quote: string;
+        personName: string;
+        personTitle: string;
+        company: string;
+        avatarUrl: string | null;
+      }) => ({
+        quote: t.quote,
+        person: {
+          name: t.personName,
+          title: t.personTitle,
+          company: t.company,
+          avatar: t.avatarUrl || "",
+        },
+      }),
+    ),
+    logos: logos.map((l: { name: string; imageUrl: string; altText: string | null }) => ({
       name: l.name,
       src: l.imageUrl,
       alt: l.altText || `${l.name} logo`,
     })),
-    metrics: metrics.map((m) => ({
+    metrics: metrics.map((m: { label: string; value: string; description: string }) => ({
       label: m.label,
       value: m.value,
       description: m.description,
@@ -313,34 +346,57 @@ export async function loadProjectCaseStudies(): Promise<ProjectCaseStudy[]> {
     orderBy: [{ featured: "desc" }, { publishedAt: "desc" }],
   });
 
-  return projects.map((p) => ({
-    title: p.title,
-    slug: p.slug,
-    client: p.client || undefined,
-    discipline: p.role || undefined,
-    focus: p.category,
-    timeline: p.timeline || undefined,
-    summary: p.summary,
-    problem: p.problem,
-    approach: JSON.parse(p.approach || "[]") as string[],
-    role: p.role,
-    stack: JSON.parse(p.techStack || "[]") as string[],
-    outcomes: JSON.parse(p.outcomes || "[]") as Array<{ label: string; value: string }>,
-    tags: JSON.parse(p.tags || "[]") as string[],
-    thumbnail: p.thumbnailUrl || undefined,
-    heroImage: p.heroImageUrl ? { src: p.heroImageUrl, alt: p.title } : undefined,
-    gallery: JSON.parse(p.gallery || "[]") as Array<{
-      type: string;
-      src: string;
-      alt: string;
-      caption?: string;
-    }>,
-    publishedAt: p.publishedAt?.toISOString().split("T")[0] || "",
-    featured: p.featured,
-    caseStudyUrl: p.caseStudyUrl || undefined,
-    liveUrl: p.liveUrl || undefined,
-    githubUrl: p.githubUrl || undefined,
-  }));
+  return projects.map(
+    (p: {
+      title: string;
+      slug: string;
+      client: string | null;
+      role: string | null;
+      category: string;
+      timeline: string | null;
+      summary: string;
+      problem: string;
+      approach: string | null;
+      techStack: string | null;
+      outcomes: string | null;
+      tags: string | null;
+      thumbnailUrl: string | null;
+      heroImageUrl: string | null;
+      gallery: string | null;
+      caseStudyUrl: string | null;
+      liveUrl: string | null;
+      githubUrl: string | null;
+      featured: boolean;
+      publishedAt: Date | null;
+    }) => ({
+      title: p.title,
+      slug: p.slug,
+      client: p.client || undefined,
+      discipline: p.role || undefined,
+      focus: p.category,
+      timeline: p.timeline || undefined,
+      summary: p.summary,
+      problem: p.problem,
+      approach: JSON.parse(p.approach || "[]") as string[],
+      role: p.role || "",
+      stack: JSON.parse(p.techStack || "[]") as string[],
+      outcomes: JSON.parse(p.outcomes || "[]") as Array<{ label: string; value: string }>,
+      tags: JSON.parse(p.tags || "[]") as string[],
+      thumbnail: p.thumbnailUrl || undefined,
+      heroImage: p.heroImageUrl ? { src: p.heroImageUrl, alt: p.title } : undefined,
+      gallery: JSON.parse(p.gallery || "[]") as Array<{
+        type: string;
+        src: string;
+        alt: string;
+        caption?: string;
+      }>,
+      publishedAt: p.publishedAt?.toISOString().split("T")[0] || "",
+      featured: p.featured,
+      caseStudyUrl: p.caseStudyUrl || undefined,
+      liveUrl: p.liveUrl || undefined,
+      githubUrl: p.githubUrl || undefined,
+    }),
+  );
 }
 
 export async function loadSiteContent() {
