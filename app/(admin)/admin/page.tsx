@@ -16,6 +16,7 @@ import type {
   Skill,
   Project,
   Certification,
+  Metric,
   AdminTab,
   AdminMessage,
   EditableItem,
@@ -36,6 +37,7 @@ export default function AdminPage() {
   const [skills, setSkills] = useState<Skill[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [certifications, setCertifications] = useState<Certification[]>([]);
+  const [metrics, setMetrics] = useState<Metric[]>([]);
 
   // Edit states
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -84,6 +86,11 @@ export default function AdminPage() {
     if (res.ok) setCertifications(await res.json());
   }, [authHeaders]);
 
+  const fetchMetrics = useCallback(async () => {
+    const res = await fetch("/api/admin/metrics", { headers: authHeaders() });
+    if (res.ok) setMetrics(await res.json());
+  }, [authHeaders]);
+
   const fetchAllData = useCallback(async () => {
     setLoading(true);
     await Promise.all([
@@ -93,6 +100,7 @@ export default function AdminPage() {
       fetchSkills(),
       fetchProjects(),
       fetchCertifications(),
+      fetchMetrics(),
     ]);
     setLoading(false);
   }, [
@@ -102,6 +110,7 @@ export default function AdminPage() {
     fetchSkills,
     fetchProjects,
     fetchCertifications,
+    fetchMetrics,
   ]);
 
   useEffect(() => {
@@ -242,6 +251,7 @@ export default function AdminPage() {
     { id: "skills", label: "Skills", icon: "⚡" },
     { id: "projects", label: "Projects", icon: "🚀" },
     { id: "certifications", label: "Certifications", icon: "📜" },
+    { id: "metrics", label: "Highlights", icon: "📊" },
   ];
 
   return (
@@ -559,6 +569,48 @@ export default function AdminPage() {
                   data={editingItem as Certification}
                   onChange={setEditingItem}
                   onSave={() => handleSave("certifications", editingItem, isCreating)}
+                  onCancel={() => {
+                    setEditingItem(null);
+                    setIsCreating(false);
+                  }}
+                />
+              )
+            }
+          />
+        )}
+
+        {/* Metrics (Highlights) Tab */}
+        {activeTab === "metrics" && (
+          <ListEditor
+            title="Highlights (Metrics)"
+            items={metrics}
+            onAdd={() => {
+              setIsCreating(true);
+              setEditingItem({
+                label: "",
+                value: "",
+                description: "",
+                sortOrder: metrics.length,
+                isVisible: true,
+              });
+            }}
+            onEdit={(item) => {
+              setIsCreating(false);
+              setEditingItem(item);
+            }}
+            onDelete={(id) => handleDelete("metrics", id)}
+            renderItem={(item: Metric) => (
+              <div>
+                <div className="font-medium">{item.label}</div>
+                <div className="text-sm text-zinc-400">{item.value}</div>
+              </div>
+            )}
+            editForm={
+              editingItem && (
+                <MetricForm
+                  data={editingItem as Metric}
+                  onChange={setEditingItem}
+                  onSave={() => handleSave("metrics", editingItem, isCreating)}
                   onCancel={() => {
                     setEditingItem(null);
                     setIsCreating(false);
@@ -1549,6 +1601,62 @@ function CertificationForm({
       />
       <CheckboxField
         label="Visible on CV"
+        checked={data.isVisible}
+        onChange={(v) => update("isVisible", v)}
+      />
+      <FormActions onSave={onSave} onCancel={onCancel} />
+    </div>
+  );
+}
+
+function MetricForm({
+  data,
+  onChange,
+  onSave,
+  onCancel,
+}: {
+  data: Metric;
+  onChange: (data: Record<string, unknown>) => void;
+  onSave: () => void;
+  onCancel: () => void;
+}) {
+  const update = (field: string, value: unknown) => {
+    onChange({ ...data, [field]: value });
+  };
+
+  return (
+    <div className="space-y-4">
+      <h3 className="text-lg font-semibold">📊 Highlight/Metric Details</h3>
+      <div className="grid gap-4 md:grid-cols-2">
+        <InputField
+          label="Label"
+          value={data.label}
+          onChange={(v) => update("label", v)}
+          required
+          placeholder="e.g., Projects Delivered"
+        />
+        <InputField
+          label="Value"
+          value={data.value}
+          onChange={(v) => update("value", v)}
+          required
+          placeholder="e.g., 50+"
+        />
+      </div>
+      <TextAreaField
+        label="Description"
+        value={data.description}
+        onChange={(v) => update("description", v)}
+        placeholder="Brief description of this metric"
+      />
+      <InputField
+        label="Sort Order"
+        value={String(data.sortOrder)}
+        onChange={(v) => update("sortOrder", parseInt(v) || 0)}
+        type="number"
+      />
+      <CheckboxField
+        label="Visible on site"
         checked={data.isVisible}
         onChange={(v) => update("isVisible", v)}
       />

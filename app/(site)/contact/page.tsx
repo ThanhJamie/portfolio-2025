@@ -10,7 +10,7 @@ const contactMethods = [
   },
   {
     label: "Location",
-    value: "HCM · Viet Nam · Remote friendly",
+    value: "HCM · Viet Nam · Work on Office/Hydric/Remote friendly",
   },
   {
     label: "LinkedIn",

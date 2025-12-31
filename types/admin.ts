@@ -108,12 +108,24 @@ export interface Certification {
   updatedAt?: Date | string;
 }
 
+export interface Metric {
+  id: string;
+  label: string;
+  value: string;
+  description: string;
+  sortOrder: number;
+  isVisible: boolean;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+}
+
 // Partial types for creating new items (without id)
 export type NewExperience = Omit<Experience, "id" | "createdAt" | "updatedAt">;
 export type NewEducation = Omit<Education, "id" | "createdAt" | "updatedAt">;
 export type NewSkill = Omit<Skill, "id" | "createdAt" | "updatedAt">;
 export type NewProject = Omit<Project, "id" | "createdAt" | "updatedAt">;
 export type NewCertification = Omit<Certification, "id" | "createdAt" | "updatedAt">;
+export type NewMetric = Omit<Metric, "id" | "createdAt" | "updatedAt">;
 
 // Union type for all editable items - allow Record for flexibility in admin panel
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -126,7 +138,8 @@ export type AdminTab =
   | "education"
   | "skills"
   | "projects"
-  | "certifications";
+  | "certifications"
+  | "metrics";
 
 // Alias for backwards compatibility
 export type Tab = AdminTab;
