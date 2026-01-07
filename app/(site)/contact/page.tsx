@@ -1,25 +1,34 @@
 import { ContactForm } from "@/components/sections/contact/ContactForm";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { getProfile } from "@/lib/content/hooks";
 
-const contactMethods = [
-  {
-    label: "Email",
-    value: "thanhjamieai@gmail.com",
-    href: "mailto:thanhjamieai@gmail.com",
-  },
-  {
-    label: "Location",
-    value: "HCM · Viet Nam · Work on Office/Hydric/Remote friendly",
-  },
-  {
-    label: "LinkedIn",
-    value: "linkedin.com/in/thanhjamieai/",
-    href: "https://www.linkedin.com/in/thanhjamieai/",
-  },
-];
+// Force dynamic rendering - database content
+export const dynamic = "force-dynamic";
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const profile = await getProfile();
+
+  // Build contact methods from profile data
+  const contactMethods = [
+    {
+      label: "Email",
+      value: profile.primaryEmail,
+      href: `mailto:${profile.primaryEmail}`,
+    },
+    {
+      label: "Location",
+      value: profile.location,
+    },
+    ...profile.socialLinks
+      .filter((link) => link.label === "LinkedIn")
+      .map((link) => ({
+        label: "LinkedIn",
+        value: link.href.replace("https://www.linkedin.com/in/", "linkedin.com/in/"),
+        href: link.href,
+      })),
+  ];
+
   return (
     <div className="space-y-16">
       <section aria-labelledby="contact-heading" className="bg-background">

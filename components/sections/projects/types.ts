@@ -1,9 +1,16 @@
 export type ProjectDiscipline =
   | "All"
-  | "Product Design"
-  | "Design Systems"
-  | "Frontend Engineering";
-export type ProjectFocus = "All" | "SaaS" | "Fintech" | "Growth" | "Ecommerce";
+  | "Full-Stack Developer"
+  | "Frontend Developer"
+  | "Backend/AI Developer"
+  | "Data/AI Engineer";
+
+export type ProjectFocus =
+  | "All"
+  | "AI Integration"
+  | "Machine Learning"
+  | "Full-Stack"
+  | "E-commerce";
 
 export interface ProjectOutcome {
   label: string;

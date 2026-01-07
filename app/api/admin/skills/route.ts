@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import type { SkillInput } from "../types";
-import { prisma, validateAuth, unauthorized } from "../_shared";
+import { prisma, validateAuth, unauthorized, revalidateSite } from "../_shared";
 
 // GET all skills
 export async function GET(request: NextRequest) {
@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
     const skill = await prisma.skill.create({
       data: data as Parameters<typeof prisma.skill.create>[0]["data"],
     });
+    revalidateSite();
     return NextResponse.json(skill, { status: 201 });
   } catch (error) {
     console.error(error);
@@ -49,6 +50,7 @@ export async function PUT(request: NextRequest) {
       where: { id },
       data: updateData as Parameters<typeof prisma.skill.update>[0]["data"],
     });
+    revalidateSite();
     return NextResponse.json(skill);
   } catch {
     return NextResponse.json({ error: "Failed to update skill" }, { status: 500 });
@@ -68,6 +70,7 @@ export async function DELETE(request: NextRequest) {
     }
 
     await prisma.skill.delete({ where: { id } });
+    revalidateSite();
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "Failed to delete skill" }, { status: 500 });

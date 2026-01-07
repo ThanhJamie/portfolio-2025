@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import type { ProjectInput } from "../types";
-import { prisma, validateAuth, unauthorized } from "../_shared";
+import { prisma, validateAuth, unauthorized, revalidateSite } from "../_shared";
 
 // GET all projects
 export async function GET(request: NextRequest) {
@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
     const project = await prisma.project.create({
       data: data as Parameters<typeof prisma.project.create>[0]["data"],
     });
+    revalidateSite();
     return NextResponse.json(project, { status: 201 });
   } catch (error) {
     console.error(error);
@@ -49,6 +50,7 @@ export async function PUT(request: NextRequest) {
       where: { id },
       data: updateData as Parameters<typeof prisma.project.update>[0]["data"],
     });
+    revalidateSite();
     return NextResponse.json(project);
   } catch {
     return NextResponse.json({ error: "Failed to update project" }, { status: 500 });
@@ -68,6 +70,7 @@ export async function DELETE(request: NextRequest) {
     }
 
     await prisma.project.delete({ where: { id } });
+    revalidateSite();
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "Failed to delete project" }, { status: 500 });

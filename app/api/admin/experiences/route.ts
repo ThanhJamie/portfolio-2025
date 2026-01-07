@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import type { ExperienceInput } from "../types";
-import { prisma, validateAuth, unauthorized } from "../_shared";
+import { prisma, validateAuth, unauthorized, revalidateSite } from "../_shared";
 
 // GET all experiences
 export async function GET(request: NextRequest) {
@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
     const experience = await prisma.experience.create({
       data: data as Parameters<typeof prisma.experience.create>[0]["data"],
     });
+    revalidateSite();
     return NextResponse.json(experience, { status: 201 });
   } catch (error) {
     console.error(error);
@@ -49,6 +50,7 @@ export async function PUT(request: NextRequest) {
       where: { id },
       data: updateData as Parameters<typeof prisma.experience.update>[0]["data"],
     });
+    revalidateSite();
     return NextResponse.json(experience);
   } catch {
     return NextResponse.json({ error: "Failed to update experience" }, { status: 500 });
@@ -68,6 +70,7 @@ export async function DELETE(request: NextRequest) {
     }
 
     await prisma.experience.delete({ where: { id } });
+    revalidateSite();
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "Failed to delete experience" }, { status: 500 });

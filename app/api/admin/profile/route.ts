@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import type { ProfileInput } from "../types";
-import { prisma, validateAuth, unauthorized } from "../_shared";
+import { prisma, validateAuth, unauthorized, revalidateSite } from "../_shared";
 
 // GET all profiles (usually just one)
 export async function GET(request: NextRequest) {
@@ -24,6 +24,7 @@ export async function POST(request: NextRequest) {
     const profile = await prisma.profile.create({
       data: data as Parameters<typeof prisma.profile.create>[0]["data"],
     });
+    revalidateSite();
     return NextResponse.json(profile, { status: 201 });
   } catch {
     return NextResponse.json({ error: "Failed to create profile" }, { status: 500 });
@@ -46,6 +47,7 @@ export async function PUT(request: NextRequest) {
       where: { id },
       data: updateData as Parameters<typeof prisma.profile.update>[0]["data"],
     });
+    revalidateSite();
     return NextResponse.json(profile);
   } catch {
     return NextResponse.json({ error: "Failed to update profile" }, { status: 500 });

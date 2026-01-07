@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import type { EducationInput } from "../types";
-import { prisma, validateAuth, unauthorized } from "../_shared";
+import { prisma, validateAuth, unauthorized, revalidateSite } from "../_shared";
 
 // GET all education
 export async function GET(request: NextRequest) {
@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
     const education = await prisma.education.create({
       data: data as Parameters<typeof prisma.education.create>[0]["data"],
     });
+    revalidateSite();
     return NextResponse.json(education, { status: 201 });
   } catch (error) {
     console.error(error);
@@ -49,6 +50,7 @@ export async function PUT(request: NextRequest) {
       where: { id },
       data: updateData as Parameters<typeof prisma.education.update>[0]["data"],
     });
+    revalidateSite();
     return NextResponse.json(education);
   } catch {
     return NextResponse.json({ error: "Failed to update education" }, { status: 500 });
@@ -68,6 +70,7 @@ export async function DELETE(request: NextRequest) {
     }
 
     await prisma.education.delete({ where: { id } });
+    revalidateSite();
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "Failed to delete education" }, { status: 500 });

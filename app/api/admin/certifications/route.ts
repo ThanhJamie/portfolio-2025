@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { prisma, validateAuth, unauthorized } from "../_shared";
+import { prisma, validateAuth, unauthorized, revalidateSite } from "../_shared";
 
 // Type for certification input
 interface CertificationInput {
@@ -41,6 +41,7 @@ export async function POST(request: NextRequest) {
     const certification = await prisma.certification.create({
       data: data as Parameters<typeof prisma.certification.create>[0]["data"],
     });
+    revalidateSite();
     return NextResponse.json(certification, { status: 201 });
   } catch (error) {
     console.error(error);
@@ -67,6 +68,7 @@ export async function PUT(request: NextRequest) {
       where: { id },
       data: updateData as Parameters<typeof prisma.certification.update>[0]["data"],
     });
+    revalidateSite();
     return NextResponse.json(certification);
   } catch {
     return NextResponse.json(
@@ -89,6 +91,7 @@ export async function DELETE(request: NextRequest) {
     }
 
     await prisma.certification.delete({ where: { id } });
+    revalidateSite();
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json(

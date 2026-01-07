@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { prisma, validateAuth, unauthorized } from "../_shared";
+import { prisma, validateAuth, unauthorized, revalidateSite } from "../_shared";
 
 // Type for metric input
 interface MetricInput {
@@ -34,6 +34,7 @@ export async function POST(request: NextRequest) {
     const metric = await prisma.metric.create({
       data: data as Parameters<typeof prisma.metric.create>[0]["data"],
     });
+    revalidateSite();
     return NextResponse.json(metric, { status: 201 });
   } catch (error) {
     console.error(error);
@@ -57,6 +58,7 @@ export async function PUT(request: NextRequest) {
       where: { id },
       data: updateData as Parameters<typeof prisma.metric.update>[0]["data"],
     });
+    revalidateSite();
     return NextResponse.json(metric);
   } catch (error) {
     console.error(error);
@@ -77,6 +79,7 @@ export async function DELETE(request: NextRequest) {
     }
 
     await prisma.metric.delete({ where: { id } });
+    revalidateSite();
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error(error);

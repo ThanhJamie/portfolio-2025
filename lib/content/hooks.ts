@@ -3,7 +3,7 @@
  * These hooks memoize database calls during SSR/SSG
  */
 
-import { cache as reactCache } from "react";
+import { cache } from "react";
 
 import {
   loadCertificationItems,
@@ -26,43 +26,21 @@ import {
   type ProjectCaseStudy,
 } from "./loaders";
 
-// Fallback cache for environments where React cache isn't available
-const fallbackCache = <TValue>(fn: () => Promise<TValue>): (() => Promise<TValue>) => {
-  let hasValue = false;
-  let value: TValue;
-
-  return async () => {
-    if (!hasValue) {
-      value = await fn();
-      hasValue = true;
-    }
-    return value;
-  };
-};
-
-const cacheImplementation = typeof reactCache === "function" ? reactCache : fallbackCache;
-
-const cacheResult = <TValue>(fn: () => Promise<TValue>): (() => Promise<TValue>) =>
-  cacheImplementation(fn);
+// React.cache() memoizes within a single request lifecycle
+// Combined with revalidatePath from admin routes, this ensures:
+// - Multiple calls in same request share one DB query
+// - Admin updates trigger fresh data on next request
 
 // Cached data fetchers
-export const getProfile = cacheResult<Profile>(() => loadProfile());
-export const getSkillGroups = cacheResult<SkillGroup[]>(() => loadSkillGroups());
-export const getExperienceItems = cacheResult<ExperienceItem[]>(() =>
-  loadExperienceItems(),
-);
-export const getEducationItems = cacheResult<EducationItem[]>(() =>
-  loadEducationEntries(),
-);
-export const getCertificationItems = cacheResult<CertificationItem[]>(() =>
-  loadCertificationItems(),
-);
-export const getSocialProof = cacheResult<SocialProof>(() => loadSocialProof());
-export const getTechStack = cacheResult<TechStack>(() => loadTechStack());
-export const getToggleSettings = cacheResult<ToggleSettings>(() => loadToggleSettings());
-export const getProjectCaseStudies = cacheResult<ProjectCaseStudy[]>(() =>
-  loadProjectCaseStudies(),
-);
+export const getProfile = cache(loadProfile);
+export const getSkillGroups = cache(loadSkillGroups);
+export const getExperienceItems = cache(loadExperienceItems);
+export const getEducationItems = cache(loadEducationEntries);
+export const getCertificationItems = cache(loadCertificationItems);
+export const getSocialProof = cache(loadSocialProof);
+export const getTechStack = cache(loadTechStack);
+export const getToggleSettings = cache(loadToggleSettings);
+export const getProjectCaseStudies = cache(loadProjectCaseStudies);
 
 // Re-export types for convenience
 export type {

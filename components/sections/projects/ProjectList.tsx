@@ -46,15 +46,22 @@ export function ProjectList({ projects }: ProjectListProps) {
         </p>
       ) : (
         <ul
-          className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
+          className={cn(
+            "grid auto-rows-fr gap-6",
+            projects.length === 1 && "md:grid-cols-1",
+            projects.length === 2 && "md:grid-cols-2",
+            projects.length >= 3 && "md:grid-cols-2 xl:grid-cols-3",
+          )}
           aria-label="Project case studies"
         >
           {projects.map((project) => (
             <li key={project.id} className="flex">
-              <Card className="flex flex-1 flex-col">
+              <Card className="flex h-full flex-1 flex-col">
                 <CardHeader className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <Badge variant="outline">{project.discipline}</Badge>
+                    <Badge variant="outline">{project.role}</Badge>
+                  </div>
+                  <div>
                     <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
                       {project.timeline}
                     </p>
@@ -67,10 +74,6 @@ export function ProjectList({ projects }: ProjectListProps) {
 
                 <CardContent className="flex flex-1 flex-col gap-4">
                   <div className="rounded-xl border border-dashed border-border/70 bg-muted/30 p-4 text-sm text-muted-foreground">
-                    <p>
-                      <span className="font-semibold text-foreground">Role:</span>{" "}
-                      {project.role}
-                    </p>
                     <p>
                       <span className="font-semibold text-foreground">Stack:</span>{" "}
                       {project.stack.join(", ")}

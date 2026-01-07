@@ -17,12 +17,19 @@ interface ProjectFiltersProps {
 
 const disciplineOptions: ProjectDiscipline[] = [
   "All",
-  "Product Design",
-  "Design Systems",
-  "Frontend Engineering",
+  "Full-Stack Developer",
+  "Frontend Developer",
+  "Backend/AI Developer",
+  "Data/AI Engineer",
 ];
 
-const focusOptions: ProjectFocus[] = ["All", "SaaS", "Fintech", "Growth", "Ecommerce"];
+const focusOptions: ProjectFocus[] = [
+  "All",
+  "AI Integration",
+  "Machine Learning",
+  "Full-Stack",
+  "E-commerce",
+];
 
 export function ProjectFilters({
   discipline,
