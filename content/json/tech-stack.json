@@ -1,84 +1,4 @@
 {
-  "frontend": [
-    {
-      "name": "JavaScript (ESNext)",
-      "summary": "Core language of the web, utilizing the latest ECMAScript features."
-    },
-    {
-      "name": "TypeScript",
-      "summary": "Superset of JavaScript for building safe, maintainable, and scalable applications."
-    },
-    {
-      "name": "React",
-      "summary": "A declarative library for building user interfaces with a component-based architecture."
-    },
-    {
-      "name": "Next.js",
-      "summary": "A full-stack React framework for production, supporting hybrid rendering and serverless functions."
-    },
-    {
-      "name": "Angular",
-      "summary": "A comprehensive platform and framework for building single-page client applications."
-    },
-
-    {
-      "name": "HTML5 & CSS3",
-      "summary": "Fundamental building blocks for structuring and styling web content."
-    },
-    {
-      "name": "Tailwind CSS",
-      "summary": "A utility-first CSS framework for rapidly building custom user interfaces."
-    },
-    {
-      "name": "Sass/SCSS",
-      "summary": "A mature CSS preprocessor that adds features like variables, nesting, and mixins."
-    },
-    {
-      "name": "CSS-in-JS",
-      "summary": "Styling components using JavaScript with libraries like Styled Components or Emotion."
-    },
-
-    {
-      "name": "Build Tools",
-      "summary": "Bundling and optimizing assets with modern tools like Vite and Webpack."
-    }
-  ],
-  "backend": [
-    {
-      "name": "Node.js",
-      "summary": "A JavaScript runtime for building scalable and high-performance server-side applications."
-    },
-    {
-      "name": "Python",
-      "summary": "A versatile language for web backends, data science, and scripting with frameworks like Django & FastAPI."
-    },
-
-    {
-      "name": "Java",
-      "summary": "A robust, object-oriented language widely used in enterprise-level applications with Spring Boot."
-    },
-    {
-      "name": "PostgreSQL",
-      "summary": "A powerful, open-source object-relational database system with a strong reputation for reliability."
-    },
-    {
-      "name": "MongoDB",
-      "summary": "A leading NoSQL database, offering flexibility and scalability for unstructured data."
-    },
-    {
-      "name": "Redis",
-      "summary": "An in-memory data structure store, used as a database, cache, and message broker."
-    },
-    {
-      "name": "REST APIs",
-      "summary": "Designing and building web services following the Representational State Transfer architectural style."
-    },
-
-    {
-      "name": "Authentication & Authorization",
-      "summary": "Implementing secure user access control with JWT, OAuth 2.0, and session management."
-    }
-  ],
   "ai_and_ml": [
     {
       "name": "Prompt Engineering",
@@ -121,6 +41,82 @@
       "summary": "Training predictive models on labeled datasets using algorithms from regression to gradient boosting."
     }
   ],
+  "frontend": [
+    {
+      "name": "JavaScript (ESNext)",
+      "summary": "Core language of the web, utilizing the latest ECMAScript features."
+    },
+    {
+      "name": "TypeScript",
+      "summary": "Superset of JavaScript for building safe, maintainable, and scalable applications."
+    },
+    {
+      "name": "React",
+      "summary": "A declarative library for building user interfaces with a component-based architecture."
+    },
+    {
+      "name": "Next.js",
+      "summary": "A full-stack React framework for production, supporting hybrid rendering and serverless functions."
+    },
+    {
+      "name": "Angular",
+      "summary": "A comprehensive platform and framework for building single-page client applications."
+    },
+    {
+      "name": "HTML5 & CSS3",
+      "summary": "Fundamental building blocks for structuring and styling web content."
+    },
+    {
+      "name": "Tailwind CSS",
+      "summary": "A utility-first CSS framework for rapidly building custom user interfaces."
+    },
+    {
+      "name": "Sass/SCSS",
+      "summary": "A mature CSS preprocessor that adds features like variables, nesting, and mixins."
+    },
+    {
+      "name": "CSS-in-JS",
+      "summary": "Styling components using JavaScript with libraries like Styled Components or Emotion."
+    },
+    {
+      "name": "Build Tools",
+      "summary": "Bundling and optimizing assets with modern tools like Vite and Webpack."
+    }
+  ],
+  "backend": [
+    {
+      "name": "Node.js",
+      "summary": "A JavaScript runtime for building scalable and high-performance server-side applications."
+    },
+    {
+      "name": "Python",
+      "summary": "A versatile language for web backends, data science, and scripting with frameworks like Django & FastAPI."
+    },
+    {
+      "name": "Java",
+      "summary": "A robust, object-oriented language widely used in enterprise-level applications with Spring Boot."
+    },
+    {
+      "name": "PostgreSQL",
+      "summary": "A powerful, open-source object-relational database system with a strong reputation for reliability."
+    },
+    {
+      "name": "MongoDB",
+      "summary": "A leading NoSQL database, offering flexibility and scalability for unstructured data."
+    },
+    {
+      "name": "Redis",
+      "summary": "An in-memory data structure store, used as a database, cache, and message broker."
+    },
+    {
+      "name": "REST APIs",
+      "summary": "Designing and building web services following the Representational State Transfer architectural style."
+    },
+    {
+      "name": "Authentication & Authorization",
+      "summary": "Implementing secure user access control with JWT, OAuth 2.0, and session management."
+    }
+  ],
   "tools_and_devops": [
     {
       "name": "Git & GitHub",
@@ -138,12 +134,10 @@
       "name": "AWS",
       "summary": "Amazon Web Services: Utilizing a wide range of cloud services like EC2, S3, RDS, and Lambda."
     },
-
     {
       "name": "Figma",
       "summary": "A collaborative interface design tool for creating, testing, and shipping better designs."
     },
-
     {
       "name": "Postman / Insomnia",
       "summary": "API platforms for building, testing, and documenting APIs throughout their lifecycle."

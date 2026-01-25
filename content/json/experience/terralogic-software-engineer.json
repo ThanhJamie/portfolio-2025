@@ -5,7 +5,7 @@
   "location": "HCM, Viet Nam · Full-time",
   "startDate": "2025-05-01",
   "endDate": "Present",
-  "summary": "Delivering full-stack features for enterprise platforms while shaping engineering standards across the Terralogic product guild.",
+  "summary": "Delivering full-stack features for enterprise platforms while establishing coding standards (TypeScript strict mode, ESLint/Prettier configs, PR review guidelines) across the Terralogic product guild.",
   "highlights": [
     "Designed and shipped modular Next.js experiences backed by a GraphQL gateway, improving page responsiveness by 35%.",
     "Rolled out contract testing and Playwright suites in CI, cutting production regressions to near-zero.",
